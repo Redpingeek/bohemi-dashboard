@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bohemi Stone Matcher (Preview)</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+<style>@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');</style>
+<style>
+  body{margin:0;background:#0c100e;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:30px 14px 60px;}
+</style>
+<!-- ============================================================
+     BOHEMI STONE MATCHER  ·  standalone preview
+     This is the same tool as the drop-in div, wrapped in a full page
+     with Prata loaded so it renders as it will on-site. Open in a browser tab.
+     ============================================================ -->
+</head>
+<body>
+
+<!-- ===================== DROP-IN DIV STARTS HERE ===================== -->
+<div class="bh-sm" id="bhStoneMatcher">
+<style>
+  .bh-sm{
+    --ground:#131815; --card:#1b2320; --cream:#f8f0e7; --sage:#bebdaa;
+    --forest:#536649; --forest-lift:#61765a; --oxblood:#611b1b; --oxblood-lift:#7c2626;
+    --line:#31403a; --muted:#a9b3a6;
+    --serif:'Prata',Georgia,'Times New Roman',serif;
+    --sans:'Filson Pro',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+    max-width:640px;margin:0 auto;background:var(--ground);color:var(--cream);
+    font-family:var(--sans);border-radius:16px;overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,.45);border:1px solid var(--line);line-height:1.55;
+  }
+  .bh-sm *{box-sizing:border-box}
+  .bh-sm-head{padding:26px 28px 18px;border-bottom:1px solid var(--line);position:relative}
+  .bh-sm-eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--sage);margin:0}
+  .bh-sm-wordmark{font-family:var(--serif);font-size:26px;letter-spacing:.18em;margin:6px 0 0;color:var(--cream)}
+  .bh-sm-star{position:absolute;right:26px;top:22px;color:var(--forest-lift);font-size:26px;opacity:.7}
+  .bh-sm-progress{height:4px;background:var(--line);border-radius:99px;margin:16px 0 0;overflow:hidden}
+  .bh-sm-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--forest),var(--sage));border-radius:99px;transition:width .4s ease}
+  .bh-sm-step{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:10px 0 0}
+  .bh-sm-body{padding:26px 28px 30px}
+  .bh-sm-q{font-family:var(--serif);font-size:24px;line-height:1.25;margin:0 0 6px;color:var(--cream);text-wrap:balance}
+  .bh-sm-sub{font-size:14px;color:var(--sage);font-style:italic;margin:0 0 20px}
+  .bh-sm-opts{display:flex;flex-direction:column;gap:10px}
+  .bh-sm-opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;cursor:pointer;
+    background:transparent;color:var(--cream);border:1px solid var(--line);border-radius:11px;
+    padding:14px 16px;font-family:var(--sans);font-size:15.5px;transition:.16s}
+  .bh-sm-opt:hover{border-color:var(--forest-lift);background:#20302a}
+  .bh-sm-opt .dot{flex:none;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--sage);
+    display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent;transition:.16s}
+  .bh-sm-opt.sel{border-color:var(--forest-lift);background:#22332c}
+  .bh-sm-opt.sel .dot{background:var(--forest);border-color:var(--forest);color:var(--cream)}
+  .bh-sm-opt .sw{flex:none;width:22px;height:22px;border-radius:6px;border:1px solid rgba(248,240,231,.25)}
+  .bh-sm-nav{display:flex;justify-content:space-between;align-items:center;margin-top:22px;gap:12px}
+  .bh-sm-back{background:transparent;border:none;color:var(--sage);font-family:var(--sans);font-size:14px;cursor:pointer;padding:8px 4px}
+  .bh-sm-back:disabled{opacity:0;pointer-events:none}
+  .bh-sm-next{background:var(--oxblood);color:var(--cream);border:none;border-radius:99px;
+    padding:12px 26px;font-family:var(--sans);font-size:14.5px;letter-spacing:.03em;cursor:pointer;transition:.16s}
+  .bh-sm-next:hover{background:var(--oxblood-lift)}
+  .bh-sm-next:disabled{background:#2b2320;color:#6f665f;cursor:not-allowed}
+  .bh-sm-field{margin:0 0 16px}
+  .bh-sm-field label{display:block;font-size:13.5px;color:var(--sage);margin:0 0 7px}
+  .bh-sm-input,.bh-sm-area{width:100%;background:#111613;border:1px solid var(--line);border-radius:10px;
+    color:var(--cream);font-family:var(--sans);font-size:15px;padding:12px 14px}
+  .bh-sm-area{min-height:82px;resize:vertical}
+  .bh-sm-input:focus,.bh-sm-area:focus{outline:none;border-color:var(--forest-lift)}
+  .bh-sm-chiprow{display:flex;flex-wrap:wrap;gap:8px}
+  .bh-sm-chip{border:1px solid var(--line);border-radius:99px;padding:8px 14px;font-size:13.5px;color:var(--cream);cursor:pointer;background:transparent;transition:.16s}
+  .bh-sm-chip:hover{border-color:var(--forest-lift)}
+  .bh-sm-chip.sel{background:var(--forest);border-color:var(--forest);color:var(--cream)}
+  /* result */
+  .bh-sm-mirror{font-family:var(--serif);font-size:20px;line-height:1.4;color:var(--cream);margin:0 0 6px}
+  .bh-sm-mirror b{color:var(--sage);font-weight:400;font-style:italic}
+  .bh-sm-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--forest-lift);margin:26px 0 12px;display:flex;align-items:center;gap:9px}
+  .bh-sm-tag::after{content:"";height:1px;flex:1;background:var(--line)}
+  .bh-sm-rescard{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:0 0 12px;background:#181f1c}
+  .bh-sm-rescard h4{font-family:var(--serif);font-size:19px;margin:0 0 5px;color:var(--cream)}
+  .bh-sm-rescard p{margin:0 0 10px;font-size:14.5px;color:var(--sage)}
+  .bh-sm-rescard.fan{border-color:var(--forest);background:#1c2620}
+  .bh-sm-link{display:inline-block;font-size:13.5px;color:var(--cream);border-bottom:1px solid var(--forest-lift);text-decoration:none;padding-bottom:1px}
+  .bh-sm-link:hover{color:var(--sage)}
+  .bh-sm-benefits{margin:6px 0 10px;padding-left:18px;font-size:14px;color:var(--sage)}
+  .bh-sm-benefits li{margin:4px 0}
+  .bh-sm-notes{border:1px dashed var(--forest-lift);border-radius:12px;padding:16px 18px;margin:8px 0 0;background:#141b18}
+  .bh-sm-notes .lab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--forest-lift);margin:0 0 8px}
+  .bh-sm-notes .row{font-size:14px;color:var(--cream);margin:4px 0}
+  .bh-sm-notes .row span{color:var(--sage)}
+  .bh-sm-next-steps{font-size:14.5px;color:var(--sage);margin:18px 0 0;line-height:1.6}
+  .bh-sm-cta{display:flex;flex-direction:column;gap:10px;margin:22px 0 0}
+  .bh-sm-book{display:block;text-align:center;background:var(--oxblood);color:var(--cream);text-decoration:none;
+    border-radius:99px;padding:15px 22px;font-size:15.5px;letter-spacing:.03em;transition:.16s}
+  .bh-sm-book:hover{background:var(--oxblood-lift)}
+  .bh-sm-emailrow{display:flex;gap:8px}
+  .bh-sm-emailrow .bh-sm-input{flex:1}
+  .bh-sm-send{background:transparent;border:1px solid var(--sage);color:var(--cream);border-radius:99px;padding:0 20px;font-family:var(--sans);font-size:14px;cursor:pointer;white-space:nowrap;transition:.16s}
+  .bh-sm-send:hover{background:#20302a}
+  .bh-sm-restart{background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer;margin:16px auto 0;display:block;text-decoration:underline}
+  .bh-sm-ok{font-size:14px;color:var(--sage);margin:8px 0 0}
+  @media(max-width:480px){.bh-sm-q{font-size:21px}.bh-sm-body{padding:22px 20px 26px}.bh-sm-head{padding:22px 20px 16px}.bh-sm-emailrow{flex-direction:column}}
+</style>
+
+<div class="bh-sm-head">
+  <span class="bh-sm-star">&#10022;</span>
+  <p class="bh-sm-eyebrow">Bohemi &nbsp;&middot;&nbsp; Future Heirlooms</p>
+  <p class="bh-sm-wordmark">Find Your Stone</p>
+  <div class="bh-sm-progress"><i id="bhProg"></i></div>
+  <p class="bh-sm-step" id="bhStep"></p>
+</div>
+<div class="bh-sm-body" id="bhBody"></div>
+
+<script>
+(function(){
+  var root = document.getElementById('bhStoneMatcher');
+  var body = root.querySelector('#bhBody');
+  var prog = root.querySelector('#bhProg');
+  var stepEl = root.querySelector('#bhStep');
+
+  // ---- Config: links (Tracy confirms final handles) ----
+  var URLS = {
+    hub:'https://bohemi.com/pages/alternative-engagement-rings',
+    saltpepper:'https://bohemi.com/pages/salt-and-pepper-diamond-engagement-rings',
+    sapphire:'https://bohemi.com/pages/montana-sapphire-engagement-rings',
+    fantasy:'https://bohemi.com/collections/starbrite-cut-stones',
+    appointments:'https://bohemi.com/pages/appointments',
+    collections:{Sagitta:'https://bohemi.com/collections/sagitta',Nyx:'https://bohemi.com/collections/nyx',Arcadia:'https://bohemi.com/collections/arcadia',Artifex:'https://bohemi.com/collections/artifex',Stellaris:'https://bohemi.com/collections/stellaris',Olympia:'https://bohemi.com/collections/olympia',Chrysos:'https://bohemi.com/collections/chrysos',Harlow:'https://bohemi.com/collections/harlow'}
+  };
+  // Persona map (from Heather's existing 4-persona Drip funnel), so the matcher REUSES that funnel + the Canva guide, no rebuild.
+  var PERSONA = {Sagitta:'The Passionate Pragmatist',Nyx:'The Passionate Pragmatist',Stellaris:'The Explorer',Arcadia:'The Explorer',Artifex:'The Visionary',Harlow:'The Visionary',Olympia:'The Sentimental Seeker',Chrysos:'The Sentimental Seeker'};
+  var GUIDE_URL = 'https://www.kx1.us/redpingeek/downloads/Fillable-Bohemi-Quiz-Funnel-Lead-Magnet.pdf'; // Heather's existing Ring Style Guide lead magnet (reused)
+
+  // ---- Questions ----
+  var QS = [
+    { key:'color', multi:true, q:'Which of these makes your heart jump?', sub:'Pick everything that pulls you in. Most people love more than one.',
+      opts:[
+        {v:'icy', label:'Icy and clear, timeless', sw:'#e9edf2', stone:'whiteDiamond', word:'icy and timeless'},
+        {v:'blue', label:'Deep blues and teals, like water', sw:'#2f6d78', stone:'sapphire', word:'deep blues and teals'},
+        {v:'green', label:'Mossy greens, forest', sw:'#4e6b45', stone:'sapphire', word:'mossy greens'},
+        {v:'peach', label:'Warm peach, champagne, honey', sw:'#dca86a', stone:'sapphire', word:'warm champagne tones'},
+        {v:'smoky', label:'Smoky black-and-white, a little celestial', sw:'#5b5f66', stone:'saltpepper', word:'smoky black-and-white'},
+        {v:'allcolor', label:'Give me all the color', sw:'linear-gradient(90deg,#c0508a,#e0a94a,#3f8f7a)', stone:'sapphire', word:'all the color'},
+        {v:'unsure', label:"I'm not sure, show me a range", neutral:true, word:'a little of everything'}
+      ]},
+    { key:'light', multi:false, q:'How do you want it to catch the light?', sub:'There is no better or worse here, only what you love.',
+      opts:[
+        {v:'alive', label:'Alive and bright from every angle, even as I move my hand', fantasy:true, word:'alive from every angle'},
+        {v:'classic', label:'Big, classic sparkle', word:'a big classic sparkle'},
+        {v:'moody', label:'Soft and moody, more depth than flash', moody:true, word:'soft and moody, more depth than flash'},
+        {v:'star', label:'Star-like and unusual, I want people to ask about it', fantasy:true, word:'something star-like and unusual'},
+        {v:'unsure', label:"I'm not sure", neutral:true, word:'a look you will know when you see it'}
+      ]},
+    { key:'life', multi:false, q:'Be honest about your hands.', sub:'We will never build you a ring you have to baby.',
+      opts:[
+        {v:'rough', label:'Rough on everything, it never comes off', dur:'high', word:'live in it every day'},
+        {v:'active', label:'Active but careful', dur:'mid', word:'wear it actively but with care'},
+        {v:'baby', label:'I take my jewelry off for the messy stuff', dur:'low', word:'take it off for the rough jobs'},
+        {v:'unsure', label:'Not sure', dur:'mid', word:'wear it every day'}
+      ]},
+    { key:'uniq', multi:false, q:'How far from a traditional ring do you want to go?', sub:'Different is better. There is no wrong distance.',
+      opts:[
+        {v:'allway', label:'All the way, I want one that could only be mine', lean:'saltpepper', word:'something that could only be yours'},
+        {v:'twist', label:'A fresh twist on a classic', lean:'sapphire', word:'a fresh twist on a classic'},
+        {v:'classic', label:'Mostly classic, with one secret detail', lean:'whiteDiamond', word:'mostly classic with one secret detail'},
+        {v:'unsure', label:'Not sure', lean:'saltpepper', word:'something a little different'}
+      ]},
+    { key:'world', multi:false, q:'Which world feels most like you?', sub:'Go with the one you would want to live in.',
+      opts:[
+        {v:'Sagitta', label:'Free-spirited, desert, a little boho', coll:'Sagitta'},
+        {v:'Nyx', label:'Moody, witchy, married under a full moon', coll:'Nyx'},
+        {v:'Arcadia', label:'Botanical, organic, grown not built', coll:'Arcadia'},
+        {v:'Artifex', label:'Clean lines, geometric, architectural', coll:'Artifex'},
+        {v:'Stellaris', label:'Under the stars, celestial', coll:'Stellaris'},
+        {v:'Olympia', label:'Timeless and classic, a future heirloom', coll:'Olympia'},
+        {v:'Chrysos', label:'Vintage, estate-case treasure', coll:'Chrysos'},
+        {v:'Harlow', label:'Deco glamour, champagne towers', coll:'Harlow'},
+        {v:'unsure', label:'I love a few of these', neutral:true}
+      ]}
+  ];
+
+  var state = { step:0, answers:{}, name:'', vibe:'', journey:'', email:'' };
+  var TOTAL = QS.length + 1; // + capture step
+
+  function setProgress(){
+    prog.style.width = Math.round((state.step/TOTAL)*100) + '%';
+    stepEl.textContent = state.step < QS.length ? ('Question ' + (state.step+1) + ' of ' + QS.length) : 'Last step';
+  }
+
+  function render(){
+    setProgress();
+    if(state.step < QS.length){ renderQuestion(QS[state.step]); }
+    else if(state.step === QS.length){ renderCapture(); }
+    else { renderResult(); }
+    body.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  function renderQuestion(Q){
+    var cur = state.answers[Q.key] || (Q.multi ? [] : null);
+    var html = '<p class="bh-sm-q">'+Q.q+'</p><p class="bh-sm-sub">'+Q.sub+'</p><div class="bh-sm-opts">';
+    Q.opts.forEach(function(o){
+      var sel = Q.multi ? (cur.indexOf(o.v)>-1) : (cur===o.v);
+      var mark = Q.multi ? (sel?'&#10003;':'') : (sel?'&#10003;':'');
+      var sw = o.sw ? '<span class="sw" style="background:'+o.sw+'"></span>' : '<span class="dot">'+mark+'</span>';
+      html += '<button class="bh-sm-opt'+(sel?' sel':'')+'" data-v="'+o.v+'">'+sw+'<span>'+o.label+'</span></button>';
+    });
+    html += '</div><div class="bh-sm-nav"><button class="bh-sm-back"'+(state.step===0?' disabled':'')+'>Back</button><button class="bh-sm-next" '+((Q.multi? cur.length: cur)?'':'disabled')+'>Next</button></div>';
+    body.innerHTML = html;
+
+    body.querySelectorAll('.bh-sm-opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var v = btn.getAttribute('data-v');
+        if(Q.multi){
+          var arr = state.answers[Q.key] || [];
+          if(v==='unsure'){ arr = arr.indexOf('unsure')>-1 ? [] : ['unsure']; }
+          else { arr = arr.filter(function(x){return x!=='unsure'}); var i=arr.indexOf(v); if(i>-1)arr.splice(i,1); else arr.push(v); }
+          state.answers[Q.key]=arr;
+        } else { state.answers[Q.key]=v; }
+        renderQuestion(Q);
+      });
+    });
+    body.querySelector('.bh-sm-back').addEventListener('click', function(){ if(state.step>0){state.step--; render();}});
+    body.querySelector('.bh-sm-next').addEventListener('click', function(){ if(this.disabled)return; state.step++; render(); });
+  }
+
+  function renderCapture(){
+    var html = '<p class="bh-sm-q">Last thing, in your own words.</p>'+
+      '<p class="bh-sm-sub">This is the part Heather loves most. Optional, but even a few words help her design for you.</p>'+
+      '<div class="bh-sm-field"><label>What are you picturing? A feeling, a color, a moment, or paste a Pinterest or Instagram link.</label>'+
+      '<textarea class="bh-sm-area" id="bhVibe" placeholder="However it comes out is perfect. Heather is used to translating a vibe.">'+(state.vibe||'')+'</textarea></div>'+
+      '<div class="bh-sm-field"><label>Your first name (so we can say hello)</label><input class="bh-sm-input" id="bhName" value="'+(state.name||'')+'" placeholder="First name"></div>'+
+      '<div class="bh-sm-field"><label>Where are you in the journey?</label><div class="bh-sm-chiprow" id="bhJourney">'+
+        ['Just dreaming','Gathering ideas','Ready to design'].map(function(j){return '<button class="bh-sm-chip'+(state.journey===j?' sel':'')+'" data-j="'+j+'">'+j+'</button>'}).join('')+'</div></div>'+
+      '<div class="bh-sm-nav"><button class="bh-sm-back">Back</button><button class="bh-sm-next">See my matches</button></div>';
+    body.innerHTML = html;
+    body.querySelector('#bhJourney').querySelectorAll('.bh-sm-chip').forEach(function(c){
+      c.addEventListener('click', function(){ state.journey=c.getAttribute('data-j'); renderCapture(); });
+    });
+    body.querySelector('.bh-sm-back').addEventListener('click', function(){ state.step--; render(); });
+    body.querySelector('.bh-sm-next').addEventListener('click', function(){
+      state.vibe = body.querySelector('#bhVibe').value.trim();
+      state.name = body.querySelector('#bhName').value.trim();
+      state.step++; render();
+    });
+  }
+
+  // ---- Scoring ----
+  function compute(){
+    var scores={saltpepper:0,sapphire:0,whiteDiamond:0};
+    var colorWords=[], colors = state.answers.color||[];
+    colors.forEach(function(v){ var o=QS[0].opts.filter(function(x){return x.v===v})[0]; if(!o)return; if(o.stone)scores[o.stone]+=2; if(o.word)colorWords.push(o.word); });
+    var light = optOf('light'); if(light){ if(light.moody)scores.saltpepper+=1; }
+    var uniq = optOf('uniq'); if(uniq&&uniq.lean)scores[uniq.lean]+=2;
+    // primary/secondary (tie favors the more alternative)
+    var order=['saltpepper','sapphire','whiteDiamond'];
+    var ranked=order.slice().sort(function(a,b){return scores[b]-scores[a] || order.indexOf(a)-order.indexOf(b)});
+    var primary = scores[ranked[0]]>0 ? ranked[0] : 'sapphire';
+    var secondary = scores[ranked[1]]>0 && ranked[1]!==primary ? ranked[1] : null;
+    var fantasy = !!(light && light.fantasy);
+    var life = optOf('life');
+    var coll = state.answers.world && state.answers.world!=='unsure' ? state.answers.world : null;
+    var persona = coll && PERSONA[coll] ? PERSONA[coll] : null;
+    return {scores:scores, primary:primary, secondary:secondary, fantasy:fantasy, colorWords:colorWords,
+            light:light, life:life, uniq:uniq, coll:coll, persona:persona};
+  }
+  function optOf(key){ var v=state.answers[key]; if(!v)return null; var Q=QS.filter(function(q){return q.key===key})[0]; return Q.opts.filter(function(o){return o.v===v})[0]; }
+
+  var STONE = {
+    saltpepper:{name:'a salt-and-pepper diamond', why:'A real diamond with its story on the surface, black and white flecks like a night sky, and no two ever alike. One of a kind by nature, and a full diamond for daily wear.', url:URLS.saltpepper},
+    sapphire:{name:'a Montana or natural sapphire', why:'Natural, often traceable to a named source, and tough enough for every day at a 9 on the Mohs scale, in a color that is truly yours.', url:URLS.sapphire},
+    whiteDiamond:{name:'a diamond, lab or natural', why:'The classic, with room for a secret detail only you know. A lab diamond is a real diamond for far less, or natural if that is what you want.', url:URLS.hub}
+  };
+
+  function renderResult(){
+    state.step = TOTAL; setProgress(); prog.style.width='100%'; stepEl.textContent='Your starting point';
+    var r = compute();
+    var hi = state.name ? (', '+esc(state.name)) : '';
+    var colorPhrase = r.colorWords.length ? r.colorWords.join(', ') : 'a range of stones';
+    var lightPhrase = r.light ? r.light.word : 'a look you will know when you see it';
+    var lifePhrase = r.life ? r.life.word : 'wear it every day';
+
+    var html = '<p class="bh-sm-mirror">Here is what we heard'+hi+': you are drawn to <b>'+colorPhrase+'</b>, you want it to <b>'+lightPhrase+'</b>, and you plan to <b>'+lifePhrase+'</b>. Different, and built to last. That is exactly our language.</p>';
+    if(r.persona){ html += '<p class="bh-sm-mirror" style="font-size:16px;margin-top:10px;">And your style leans <b>'+r.persona+'</b>.</p>'; }
+
+    html += '<div class="bh-sm-tag">Your starting point</div>';
+    var s = STONE[r.primary];
+    html += '<div class="bh-sm-rescard"><h4>'+cap(s.name)+'</h4><p>'+s.why+'</p><a class="bh-sm-link" href="'+s.url+'">Explore '+s.name+'</a></div>';
+    if(r.secondary){ var s2=STONE[r.secondary]; html += '<div class="bh-sm-rescard"><h4>You might also love '+s2.name+'</h4><p>'+s2.why+'</p><a class="bh-sm-link" href="'+s2.url+'">Take a look</a></div>'; }
+
+    if(r.fantasy){
+      html += '<div class="bh-sm-rescard fan"><h4>&#10022; A fantasy cut could be perfect for you</h4>'+
+        '<p>You told us you want it alive in the light. That is what a fantasy cut does, and here is the honest reason:</p>'+
+        '<ul class="bh-sm-benefits"><li>Even brightness that holds from many angles as your hand moves</li><li>A larger face for its carat weight</li><li>A lower, more secure setting for everyday wear</li></ul>'+
+        '<a class="bh-sm-link" href="'+URLS.fantasy+'">See fantasy cuts</a></div>';
+    }
+
+    if(r.coll){ html += '<div class="bh-sm-rescard"><h4>Your world: the '+r.coll+' collection</h4><p>The pieces that match the mood you picked.</p><a class="bh-sm-link" href="'+URLS.collections[r.coll]+'">Browse '+r.coll+'</a></div>'; }
+
+    if(r.life && r.life.dur==='low'){ html += '<p class="bh-sm-next-steps">Since you will take it off for the rough jobs, you also have room to consider softer colored stones. Heather will walk you through the honest trade-offs, never a ring you have to worry about.</p>'; }
+
+    // Notes for Heather (the double-duty, framed as a trust feature)
+    html += '<div class="bh-sm-notes"><p class="lab">&#10022; Your notes for Heather</p>'+
+      '<p class="bh-sm-next-steps" style="margin:0 0 8px">So your consultation picks up right where you left off, here is what we will share with her:</p>'+
+      row('Stone', s.name + (r.secondary?(' or '+STONE[r.secondary].name):'')) +
+      row('Look', lightPhrase + (r.fantasy?', a fantasy cut':'')) +
+      row('Everyday wear', lifePhrase) +
+      row('Feel', r.coll?('the '+r.coll+' world'):'a few worlds you love') +
+      (state.vibe?row('In your words', esc(state.vibe)):'') +
+      '</div>';
+
+    html += '<p class="bh-sm-next-steps"><strong style="color:var(--cream);font-weight:600">What happens next.</strong> This is a starting point, not a decision. Book a free consultation and Heather picks it up from here, no pressure and no sales pitch. She sources the stone with you and designs around it, you always know the full cost before the next step, and she works under your top-end budget, not over it.</p>';
+
+    html += '<div class="bh-sm-cta"><a class="bh-sm-book" href="'+URLS.appointments+'">Book a consultation with Heather</a>'+
+      '<div class="bh-sm-emailrow"><input class="bh-sm-input" id="bhEmail" type="email" placeholder="Email me my matches and style guide" value="'+(state.email||'')+'"><button class="bh-sm-send" id="bhSend">Send</button></div>'+
+      '<div id="bhSendOk"></div></div>';
+    html += '<button class="bh-sm-restart">Start over</button>';
+    body.innerHTML = html;
+
+    body.querySelector('#bhSend').addEventListener('click', function(){
+      var em = body.querySelector('#bhEmail').value.trim();
+      if(!em || em.indexOf('@')<0){ body.querySelector('#bhSendOk').innerHTML='<p class="bh-sm-ok">Please enter a valid email.</p>'; return; }
+      state.email=em;
+      var r = compute();
+      // === DRIP WIRING (reuses Heather's existing paid funnel; NO rebuild) ===
+      // Post {email, name:state.name, journey:state.journey, vibe:state.vibe, persona:r.persona, brief:r} to Drip.
+      // 1) Tag the lead with r.persona ("The Visionary" / "The Explorer" / "The Passionate Pragmatist" / "The Sentimental Seeker")
+      //    to ENTER THE EXISTING 4-persona welcome sequence.
+      // 2) Deliver the same Canva Ring Style Guide (GUIDE_URL).
+      // 3) Store state.vibe (the vibe brief) as a Drip custom field so Heather has it for the consultation.
+      // Stubbed for preview.
+      body.querySelector('#bhSendOk').innerHTML='<p class="bh-sm-ok">&#10003; On its way, your matches and your Ring Style Guide. Heather will have your notes when you book.</p>';
+    });
+    body.querySelector('.bh-sm-restart').addEventListener('click', function(){ state={step:0,answers:{},name:'',vibe:'',journey:'',email:''}; render(); });
+  }
+
+  function row(k,v){ return '<p class="row"><span>'+k+':</span> '+v+'</p>'; }
+  function cap(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+  function esc(s){ return (s||'').replace(/[<>&"]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];}); }
+
+  render();
+})();
+</script>
+</div>
+<!-- ===================== DROP-IN DIV ENDS HERE ===================== -->
+
+</body>
+</html>

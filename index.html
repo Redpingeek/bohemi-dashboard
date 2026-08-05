@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bohemi Round Two: Project Command Center</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%8D%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<style>
+  :root{
+    --ground:#f4ece1; --card:#fdfbf7; --ink:#131815; --muted:#6f6a5f;
+    --forest:#536649; --forest-soft:#e5ebe1; --sage:#bebdaa; --cream:#f8f0e7;
+    --amber:#9a6b34; --amber-soft:#f3e7d5; --done:#5a7150; --line:#e2dccf;
+    --shadow:0 1px 2px rgba(19,24,21,.04),0 8px 24px rgba(19,24,21,.05);
+    --serif:'Prata',Georgia,'Times New Roman',serif;
+    --sans:'Filson Pro',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#16180f; --card:#1e2117; --ink:#eee7d8; --muted:#a49d8c;
+      --forest:#9fb08f; --forest-soft:#232a1e; --sage:#3a3f30; --cream:#232619;
+      --amber:#d2a35f; --amber-soft:#2b2417; --done:#9fb08f; --line:#2c3022;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#f4ece1; --card:#fdfbf7; --ink:#131815; --muted:#6f6a5f;
+    --forest:#536649; --forest-soft:#e5ebe1; --sage:#bebdaa; --cream:#f8f0e7;
+    --amber:#9a6b34; --amber-soft:#f3e7d5; --done:#5a7150; --line:#e2dccf;
+  }
+  :root[data-theme="dark"]{
+    --ground:#16180f; --card:#1e2117; --ink:#eee7d8; --muted:#a49d8c;
+    --forest:#9fb08f; --forest-soft:#232a1e; --sage:#3a3f30; --cream:#232619;
+    --amber:#d2a35f; --amber-soft:#2b2417; --done:#9fb08f; --line:#2c3022;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
+    line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px 72px;}
+  a{color:var(--forest);}
+
+  /* Header */
+  .masthead{background:var(--forest);color:var(--cream);border-radius:0 0 18px 18px;
+    padding:34px 30px 30px;margin-bottom:26px;}
+  .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:color-mix(in srgb,var(--cream) 72%,transparent);margin:0 0 12px;}
+  .masthead h1{font-family:var(--serif);font-weight:400;font-size:clamp(26px,5vw,38px);
+    margin:0;line-height:1.12;letter-spacing:.01em;text-wrap:balance;}
+  .masthead .sub{margin:10px 0 18px;color:color-mix(in srgb,var(--cream) 82%,transparent);
+    font-size:15px;}
+  .status{display:inline-flex;align-items:center;gap:8px;background:color-mix(in srgb,var(--cream) 16%,transparent);
+    border:1px solid color-mix(in srgb,var(--cream) 30%,transparent);color:var(--cream);
+    padding:6px 13px;border-radius:100px;font-size:12.5px;letter-spacing:.04em;}
+  .dot{width:8px;height:8px;border-radius:50%;background:#8fce9a;box-shadow:0 0 0 4px rgba(143,206,154,.22);}
+
+  /* Section shell */
+  section{margin:30px 0;}
+  .label{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--forest);
+    font-weight:600;margin:0 0 14px;display:flex;align-items:center;gap:10px;}
+  .label::after{content:"";height:1px;flex:1;background:var(--line);}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    box-shadow:var(--shadow);}
+
+  /* Timeline */
+  .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .milestone{padding:18px 18px 20px;position:relative;}
+  .m-ico{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:14px;font-weight:700;margin-bottom:11px;}
+  .m-done .m-ico{background:var(--forest);color:var(--cream);}
+  .m-now .m-ico{background:var(--amber-soft);color:var(--amber);border:2px solid var(--amber);}
+  .m-next .m-ico{background:transparent;border:2px dashed var(--sage);color:var(--muted);}
+  .m-date{font-size:12px;color:var(--muted);letter-spacing:.03em;}
+  .m-title{font-family:var(--serif);font-size:17px;margin:2px 0 4px;}
+  .m-note{font-size:13px;color:var(--muted);}
+  .m-tag{display:inline-block;margin-top:9px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    padding:3px 8px;border-radius:6px;}
+  .m-done .m-tag{background:var(--forest-soft);color:var(--forest);}
+  .m-now .m-tag{background:var(--amber-soft);color:var(--amber);}
+  .m-next .m-tag{background:var(--amber-soft);color:var(--amber);}
+
+  /* Metrics */
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .metric{padding:18px 16px;text-align:center;}
+  .metric .n{font-family:var(--serif);font-size:30px;line-height:1;color:var(--forest);
+    font-variant-numeric:tabular-nums;}
+  .metric .k{font-size:12px;color:var(--muted);margin-top:8px;letter-spacing:.02em;}
+
+  /* Complete / review list */
+  .done-list{list-style:none;margin:0;padding:6px 4px;}
+  .done-list li{display:flex;gap:12px;padding:13px 16px;align-items:flex-start;}
+  .done-list li + li{border-top:1px solid var(--line);}
+  .check{flex:none;width:20px;height:20px;border-radius:50%;background:var(--forest);color:var(--cream);
+    display:flex;align-items:center;justify-content:center;font-size:12px;margin-top:1px;}
+  .check.built{background:var(--amber);}
+  .done-list b{font-weight:600;}
+  .done-list span{color:var(--muted);}
+  .trybtn{display:inline-block;background:var(--forest);color:var(--cream);text-decoration:none;
+    border-radius:99px;padding:11px 22px;font-size:14.5px;letter-spacing:.02em;margin-top:12px;}
+
+  /* Decisions / checklist */
+  .progress-head{display:flex;justify-content:space-between;align-items:baseline;
+    padding:16px 18px 4px;gap:12px;flex-wrap:wrap;}
+  .progress-head .t{font-family:var(--serif);font-size:18px;}
+  .progress-head .c{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;}
+  .bar{height:7px;background:var(--forest-soft);border-radius:100px;margin:10px 18px 6px;overflow:hidden;}
+  .bar > i{display:block;height:100%;width:0;background:var(--forest);border-radius:100px;
+    transition:width .35s ease;}
+  .grp{padding:8px 18px 10px;}
+  .item{display:flex;gap:12px;align-items:flex-start;padding:13px 8px;border-top:1px solid var(--line);cursor:pointer;}
+  .item:first-child{border-top:none;}
+  .item input{appearance:none;-webkit-appearance:none;flex:none;width:19px;height:19px;margin:2px 0 0;
+    border:1.5px solid var(--sage);border-radius:5px;background:var(--card);cursor:pointer;position:relative;transition:.15s;}
+  .item input:checked{background:var(--forest);border-color:var(--forest);}
+  .item input:checked::after{content:"✓";position:absolute;inset:0;color:var(--cream);font-size:12px;
+    display:flex;align-items:center;justify-content:center;}
+  .item:hover input{border-color:var(--forest);}
+  .item .txt{font-size:14.5px;}
+  .item .txt b{font-weight:600;}
+  .item .txt .d{display:block;color:var(--muted);font-size:13px;margin-top:2px;}
+  .item.checked .txt{color:var(--muted);}
+  .item.checked .txt b{text-decoration:line-through;text-decoration-color:var(--sage);}
+
+  /* Measurement */
+  .mtable{width:100%;border-collapse:collapse;font-size:14px;}
+  .mtable th,.mtable td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);}
+  .mtable th{font-family:var(--serif);font-weight:400;font-size:13px;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;}
+  .mtable td:first-child{color:var(--muted);}
+  .mtable td.v{font-family:var(--serif);font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums;}
+  .mtable td.pending{color:var(--amber);font-style:italic;font-family:var(--sans);font-size:13px;}
+  .watch{padding:16px 18px;}
+  .watch p{margin:0 0 8px;font-size:13.5px;color:var(--muted);}
+  .watch ul{margin:6px 0 0;padding-left:20px;font-size:14px;}
+  .watch li{margin:5px 0;}
+  .note-line{font-size:13px;color:var(--muted);padding:0 4px;margin:12px 0 0;}
+
+  .foot{text-align:center;margin-top:40px;color:var(--muted);font-size:12.5px;}
+  .foot .rp{font-family:var(--serif);color:var(--forest);font-size:14px;}
+
+  @media (max-width:640px){
+    .timeline{grid-template-columns:1fr;}
+    .metrics{grid-template-columns:repeat(2,1fr);}
+    .masthead{padding:26px 20px;}
+  }
+</style>
+
+<div class="masthead">
+  <p class="eyebrow">Red Pin Geek &nbsp;&middot;&nbsp; Project Command Center</p>
+  <h1>Bohemi Round Two</h1>
+  <p class="sub">Search and AI visibility, and the move to appointment-only &nbsp;&middot;&nbsp; for Heather</p>
+  <span class="status"><span class="dot"></span> Live and building &nbsp;&middot;&nbsp; updated while you travel</span>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <p class="label">Timeline</p>
+    <div class="timeline">
+      <div class="card milestone m-done">
+        <div class="m-ico">&#10003;</div>
+        <div class="m-date">July 2026</div>
+        <div class="m-title">Foundation, live</div>
+        <div class="m-note">155 product pages optimized and live, with the starting baseline captured.</div>
+        <span class="m-tag">Complete</span>
+      </div>
+      <div class="card milestone m-now">
+        <div class="m-ico">&#10022;</div>
+        <div class="m-date">August 2026</div>
+        <div class="m-title">Authority, building</div>
+        <div class="m-note">Your alternative engagement rings hub, the deep-dive pages, and the stone matcher, built while you travel.</div>
+        <span class="m-tag">In progress</span>
+      </div>
+      <div class="card milestone m-next">
+        <div class="m-ico">&#9675;</div>
+        <div class="m-date">on your return</div>
+        <div class="m-title">Appointment storefront</div>
+        <div class="m-note">The pages, the booking flow, and the film placements, drafted and ready for your green light.</div>
+        <span class="m-tag">Drafted</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">At a glance</p>
+    <div class="metrics">
+      <div class="card metric"><div class="n">155</div><div class="k">Product pages live</div></div>
+      <div class="card metric"><div class="n">3</div><div class="k">Authority pages ready</div></div>
+      <div class="card metric"><div class="n">1</div><div class="k">Stone matcher tool</div></div>
+      <div class="card metric"><div class="n">7</div><div class="k">Decisions to unlock the rest</div></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Built while you were away, ready for your review</p>
+    <div class="card">
+      <ul class="done-list">
+        <li><span class="check built">&#10022;</span><div><b>Your alternative engagement rings authority hub.</b> <span>The page that makes Bohemi the answer for the whole category, not just one cut. Anchored on how you actually work: designed around the stone, and built to last a lifetime.</span><div style="margin-top:9px;"><a href="https://docs.google.com/document/d/1t92gdmZzRgJYQIOx6afgv6JDsSJ8VthdFn9b45YV3Go/edit" target="_blank" rel="noopener" style="display:inline-block;font-size:13.5px;color:var(--forest);text-decoration:none;border-bottom:1px solid var(--sage);padding-bottom:1px;">Read the draft &#8594;</a></div></div></li>
+        <li><span class="check built">&#10022;</span><div><b>Two deep-dive pages.</b> <span>Salt-and-pepper diamonds and Montana sapphires, the two searches your buyers make that you were not yet ranking for, written in your voice with the honest durability and traceability details.</span><div style="margin-top:9px;display:flex;gap:18px;flex-wrap:wrap;"><a href="https://docs.google.com/document/d/175JA-UC_iqvun1h3E_Ruk_QHoiw1Bew_QkHXF_DiSdY/edit" target="_blank" rel="noopener" style="font-size:13.5px;color:var(--forest);text-decoration:none;border-bottom:1px solid var(--sage);padding-bottom:1px;">Read: Salt-and-Pepper &#8594;</a><a href="https://docs.google.com/document/d/1woe6U22qJI6EKeOGQHBuywiNOnG49izqCT9SShuuglM/edit" target="_blank" rel="noopener" style="font-size:13.5px;color:var(--forest);text-decoration:none;border-bottom:1px solid var(--sage);padding-bottom:1px;">Read: Montana &#8594;</a></div></div></li>
+        <li><span class="check built">&#10022;</span><div><b>The stone matcher, your intake in tool form.</b> <span>A short "find your stone" quiz for the overwhelmed buyer that guides them to their stone, cut, and style, and hands you a decoded vibe brief so your consultation starts warm instead of cold. Try it yourself.</span>
+        <a class="trybtn" href="stone-matcher.html" target="_blank" rel="noopener">Try the stone matcher &#8594;</a>
+        </div></li>
+        <li><span class="check built">&#10022;</span><div><b>An accessibility statement page.</b> <span>A short, genuine commitment to making your site usable for everyone. It is a trust signal for visitors and a small plus with Google. Since it is a public statement, you may want your lawyer to glance at the wording first.</span><div style="margin-top:9px;"><a href="https://docs.google.com/document/d/1HzevTaZoyuTqLv0ImmMEjGAB7OpEWbHG2MQt5GnQe88/edit" target="_blank" rel="noopener" style="display:inline-block;font-size:13.5px;color:var(--forest);text-decoration:none;border-bottom:1px solid var(--sage);padding-bottom:1px;">Read the draft &#8594;</a></div></div></li>
+        <li><span class="check built">&#10022;</span><div><b>Your style-quiz page, tuned for search.</b> <span>Your quiz already ranks on page two for terms people actively search, like "engagement ring style quiz." We tuned the page's words so it can climb and bring you more of those leads. Your quiz and email funnel stay exactly as they are.</span><div style="margin-top:9px;"><a href="https://docs.google.com/document/d/1xVhcmodEGaymaZdCohBx0Hc31z3UeaSArc4is40S-04/edit" target="_blank" rel="noopener" style="display:inline-block;font-size:13.5px;color:var(--forest);text-decoration:none;border-bottom:1px solid var(--sage);padding-bottom:1px;">Read the draft &#8594;</a></div></div></li>
+      </ul>
+      <p class="note-line" style="padding:2px 18px 16px;">Nothing here is live yet. It all waits for your green light, then goes up together.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">The thinking behind it</p>
+    <div class="card">
+      <div style="padding:6px 4px;">
+        <div style="padding:14px 16px;border-bottom:1px solid var(--line);">
+          <div style="font-family:var(--serif);font-size:17px;margin:0 0 5px;">The authority pages</div>
+          <p style="margin:0;font-size:14.5px;color:var(--muted);">When someone asks Google or an AI assistant for an alternative engagement ring, the recommendation goes to whoever owns that category. Right now that is not you, even though it is exactly what you do. The hub makes Bohemi the answer for the whole category, and the two deep-dive pages catch the specific searches your buyers already make, salt-and-pepper diamonds and Montana sapphires, that you were not yet showing up for. It puts the authority you already earned to work on the terms you own outright.</p>
+        </div>
+        <div style="padding:14px 16px;">
+          <div style="font-family:var(--serif);font-size:17px;margin:0 0 5px;">The stone matcher</div>
+          <p style="margin:0;font-size:14.5px;color:var(--muted);">Most of your buyers arrive overwhelmed, going off a feeling with no jewelry vocabulary. The quiz meets them right there, asking about color, light, and lifestyle instead of cut and clarity, and it hands you a decoded brief of what they are picturing. It does the first pass of the translation you are so good at, so the consultation starts warm instead of cold, for both of you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">How we build your new pages now</p>
+    <div class="card">
+      <div style="padding:6px 4px;">
+        <div style="padding:14px 16px;border-bottom:1px solid var(--line);">
+          <div style="font-family:var(--serif);font-size:17px;margin:0 0 5px;">You review the real page, not a flat mockup</div>
+          <p style="margin:0;font-size:14.5px;color:var(--muted);">Each new page is built as a live, branded page you can open on your phone and click through, not a static image. What you see is what goes live.</p>
+        </div>
+        <div style="padding:14px 16px;border-bottom:1px solid var(--line);">
+          <div style="font-family:var(--serif);font-size:17px;margin:0 0 5px;">Edits happen in real time</div>
+          <p style="margin:0;font-size:14.5px;color:var(--muted);">You comment, we adjust, and you see the change live. No more waiting through rounds of redesign to get it right.</p>
+        </div>
+        <div style="padding:14px 16px;">
+          <div style="font-family:var(--serif);font-size:17px;margin:0 0 5px;">Then it goes live</div>
+          <p style="margin:0;font-size:14.5px;color:var(--muted);">Once you approve, Tracy places the finished page into your site with its behind-the-scenes search code. What used to take weeks of back-and-forth now takes days, and the final page matches your vision more closely.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Image accessibility, handled</p>
+    <div class="card">
+      <div style="padding:6px 4px;">
+        <div style="padding:14px 16px;border-bottom:1px solid var(--line);">
+          <div style="font-family:var(--serif);font-size:17px;margin:0 0 5px;">What we found</div>
+          <p style="margin:0;font-size:14.5px;color:var(--muted);">We went through every image on your site. The good news: most already carry alt text, the short description a screen reader reads aloud and Google reads too, because you add it as you post, and you write it well. Only a set of images had that field left blank. Those are the ones we are closing.</p>
+        </div>
+        <div style="padding:14px 16px;border-bottom:1px solid var(--line);">
+          <div style="font-family:var(--serif);font-size:17px;margin:0 0 5px;">Your product photos, done in one pass</div>
+          <p style="margin:0;font-size:14.5px;color:var(--muted);">For your product images we filled every blank description in a single bulk update, drawn straight from your catalog so each one is accurate: the piece, the metal, the form. Nothing for you to click through. This was the most exposed part, and it is closed.</p>
+        </div>
+        <div style="padding:14px 16px;border-bottom:1px solid var(--line);">
+          <div style="font-family:var(--serif);font-size:17px;margin:0 0 5px;">Your blog images stay in your voice</div>
+          <p style="margin:0;font-size:14.5px;color:var(--muted);">Here is what today taught us. Your blog descriptions are richer than anything automated could write. "Champagne salt and pepper emerald cut diamond in 14k yellow gold inside a pink flower" is yours, and it should stay yours. So you keep writing blog alt as you publish, the way you already do, and we simply catch the few that slip through so nothing sits empty.</p>
+        </div>
+        <div style="padding:14px 16px;border-bottom:1px solid var(--line);">
+          <div style="font-family:var(--serif);font-size:17px;margin:0 0 5px;">The rhythm going forward</div>
+          <p style="margin:0;font-size:14.5px;color:var(--muted);">When you add an image, add a line describing it, which you already do naturally. On a regular schedule we scan the whole site and hand you a short list of anything left blank, with the exact spot to find it, so there is no hunting and no guessing which image is missing. Product photos we can refresh in bulk anytime from your catalog.</p>
+        </div>
+        <div style="padding:14px 16px;">
+          <div style="font-family:var(--serif);font-size:17px;margin:0 0 5px;">Your fail-safe, for the weeks you are slammed</div>
+          <p style="margin:0;font-size:14.5px;color:var(--muted);">We also built a tool that can fill blank descriptions automatically, in plain, accurate language. Think of it as a safety net, not the author. If you get busy and cannot get to a batch of missing alt, it makes sure nothing stays empty and exposed. When you have the time, your words always win. It is the backup that keeps this from ever piling up again.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Your decisions</p>
+    <div class="card">
+      <div class="progress-head">
+        <span class="t">The short list only you can answer</span>
+        <span class="c" id="counter">0 of 7 done</span>
+      </div>
+      <div class="bar"><i id="fill"></i></div>
+      <p class="note-line" style="padding:2px 18px 4px;">Everything above is built and waiting. Each answer here unlocks a stack of finished work. No rush, and "not sure yet" is always fine. Your progress saves on this device.</p>
+      <div class="grp" id="list">
+        <label class="item"><input type="checkbox" data-id="d1"><span class="txt"><b>Confirm the custom timeline.</b><span class="d">One set of numbers to make the single source of truth everywhere. From your intake: ready-made 4 to 5 weeks, made-to-measure 6 to 8, full custom 8 to 12.</span></span></label>
+        <label class="item"><input type="checkbox" data-id="d2"><span class="txt"><b>Confirm pricing and deposits.</b><span class="d">Ready-made from about $4,000, made-to-measure $6,000 to $10,000, bespoke $8,000 and up. Design deposits $500 and $800, credited to the final price. And whether to show the ranges publicly.</span></span></label>
+        <label class="item"><input type="checkbox" data-id="d3"><span class="txt"><b>Capacity per tier.</b><span class="d">Roughly how many of each you can comfortably take at once, so the new booking flow never overbooks the work that eats your design time.</span></span></label>
+        <label class="item"><input type="checkbox" data-id="d4"><span class="txt"><b>The switch date.</b><span class="d">When the studio officially becomes by-appointment (early November before the holidays, or January), so the site language is accurate on the day.</span></span></label>
+        <label class="item"><input type="checkbox" data-id="d5"><span class="txt"><b>The Starbrite pages.</b><span class="d">Which live pages feature genuine John Dyer stones, so "Starbrite" stays only on those and "fantasy cut" everywhere else. A quick list is all we need.</span></span></label>
+        <label class="item"><input type="checkbox" data-id="d6"><span class="txt"><b>Just you now?</b><span class="d">If Emily is stepping back before the pivot, we center the About page, the film, and the new pages on you alone. Just confirm.</span></span></label>
+        <label class="item"><input type="checkbox" data-id="d7"><span class="txt"><b>Reviews access.</b><span class="d">If you are comfortable sharing Wiremo and Google Merchant Center access, we pull your reviews and wire them in, so you never gather anything by hand.</span></span></label>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Already live</p>
+    <div class="card">
+      <ul class="done-list">
+        <li><span class="check">&#10003;</span><div><b>155 engagement ring stone pages rebuilt.</b> <span>Each with a richer description, a comparison at a glance, buyer questions answered on the page, and structured data for Google and AI.</span></div></li>
+        <li><span class="check">&#10003;</span><div><b>Trademark language corrected, catalog errors fixed.</b> <span>"Starbrite" now appears only on genuine John Dyer stones. A mislabeled spinel, two typo URLs, and a duplicate product, all corrected and redirected. No action needed.</span></div></li>
+      </ul>
+      <p class="note-line" style="padding:2px 18px 16px;">Plus a short list of optional source tidy-ups from that work (small typos and carat confirmations on your own listings), all in your product-page report. None affect the live pages.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Measurement</p>
+    <div class="card">
+      <table class="mtable">
+        <tr><th>Metric</th><th>Day 0 baseline</th><th>30 day</th><th>60 day</th></tr>
+        <tr><td>Impressions</td><td class="v">1,669</td><td class="pending">Sept 1</td><td class="pending">Sept 30</td></tr>
+        <tr><td>Clicks</td><td class="v">59</td><td class="pending">Sept 1</td><td class="pending">Sept 30</td></tr>
+        <tr><td>Click-through rate</td><td class="v">3.54%</td><td class="pending">Sept 1</td><td class="pending">Sept 30</td></tr>
+        <tr><td>Average position</td><td class="v">7.8</td><td class="pending">Sept 1</td><td class="pending">Sept 30</td></tr>
+      </table>
+      <div class="watch">
+        <p><strong>What we are watching:</strong></p>
+        <ul>
+          <li>Product-page click-through rate climbing toward the rate your collection pages already earn.</li>
+          <li>Rich results appearing in Google from the new structured data.</li>
+          <li>AI assistant recommendations on your head terms: Montana sapphire, salt-and-pepper diamond engagement ring, and fantasy cut. The new authority pages add their own tracking once they go live.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">
+    <div class="rp">Red Pin Geek</div>
+    Round Two in progress &nbsp;&middot;&nbsp; product-page baseline captured July 31, 2026 &nbsp;&middot;&nbsp; next reads around September 1
+  </div>
+</div>
+
+<script>
+  (function(){
+    var boxes = Array.prototype.slice.call(document.querySelectorAll('.item input'));
+    var counter = document.getElementById('counter');
+    var fill = document.getElementById('fill');
+    var KEY = 'bohemi-cmd-v2-';
+    function refresh(){
+      var done = 0;
+      boxes.forEach(function(b){
+        var on = b.checked;
+        b.closest('.item').classList.toggle('checked', on);
+        if(on) done++;
+      });
+      counter.textContent = done + ' of ' + boxes.length + ' done';
+      fill.style.width = (boxes.length ? (done/boxes.length*100) : 0) + '%';
+    }
+    boxes.forEach(function(b){
+      var id = KEY + b.getAttribute('data-id');
+      try { if(localStorage.getItem(id) === '1') b.checked = true; } catch(e){}
+      b.addEventListener('change', function(){
+        try { localStorage.setItem(id, b.checked ? '1' : '0'); } catch(e){}
+        refresh();
+      });
+    });
+    refresh();
+  })();
+</script>
+
+</body>
+</html>
