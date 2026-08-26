@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bohemi: Your New Pages and Where They Go</title>
+<!-- GLOSSED: impression, position, average position -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%92%8D%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<style>
+  :root{
+    --ground:#f4ece1; --card:#fdfbf7; --ink:#131815; --muted:#6f6a5f;
+    --forest:#536649; --forest-soft:#e5ebe1; --sage:#bebdaa; --cream:#f8f0e7;
+    --amber:#9a6b34; --amber-soft:#f3e7d5; --done:#5a7150; --line:#e2dccf;
+    --shadow:0 1px 2px rgba(19,24,21,.04),0 8px 24px rgba(19,24,21,.05);
+    --serif:'Prata',Georgia,'Times New Roman',serif;
+    --sans:'Filson Pro',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#16180f; --card:#1e2117; --ink:#eee7d8; --muted:#a49d8c;
+      --forest:#9fb08f; --forest-soft:#232a1e; --sage:#3a3f30; --cream:#232619;
+      --amber:#d2a35f; --amber-soft:#2b2417; --done:#9fb08f; --line:#2c3022;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#16180f; --card:#1e2117; --ink:#eee7d8; --muted:#a49d8c;
+    --forest:#9fb08f; --forest-soft:#232a1e; --sage:#3a3f30; --cream:#232619;
+    --amber:#d2a35f; --amber-soft:#2b2417; --done:#9fb08f; --line:#2c3022;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
+    line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px 72px;}
+  a{color:var(--forest);}
+  .masthead{background:var(--forest);color:var(--cream);border-radius:0 0 18px 18px;
+    padding:34px 30px 30px;margin-bottom:26px;}
+  .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:color-mix(in srgb,var(--cream) 72%,transparent);margin:0 0 12px;}
+  .masthead h1{font-family:var(--serif);font-weight:400;font-size:clamp(26px,5vw,38px);
+    margin:0;line-height:1.12;text-wrap:balance;}
+  .masthead .sub{margin:12px 0 0;color:color-mix(in srgb,var(--cream) 85%,transparent);font-size:15.5px;}
+  section{margin:34px 0;}
+  .label{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--forest);
+    margin:0 0 14px;font-weight:600;}
+  h2{font-family:var(--serif);font-weight:400;font-size:23px;margin:0 0 10px;line-height:1.2;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow);}
+  .card h3{font-family:var(--serif);font-weight:400;font-size:20px;margin:0 0 4px;line-height:1.2;}
+  .pill{display:inline-block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    padding:4px 10px;border-radius:100px;margin-bottom:12px;}
+  .pill.live{background:var(--forest-soft);color:var(--done);border:1px solid color-mix(in srgb,var(--done) 35%,transparent);}
+  .pill.wait{background:var(--amber-soft);color:var(--amber);border:1px solid color-mix(in srgb,var(--amber) 35%,transparent);}
+  .row{display:grid;grid-template-columns:130px 1fr;gap:6px 16px;margin-top:14px;
+    padding-top:14px;border-top:1px solid var(--line);font-size:14.5px;}
+  .row dt{color:var(--muted);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;padding-top:2px;}
+  .row dd{margin:0;}
+  @media (max-width:560px){ .row{grid-template-columns:1fr;gap:2px;} .row dd{margin-bottom:10px;} }
+  code{background:var(--forest-soft);color:var(--ink);padding:2px 6px;border-radius:5px;
+    font-size:13px;word-break:break-all;}
+  .note{background:var(--amber-soft);border-left:3px solid var(--amber);border-radius:0 10px 10px 0;
+    padding:16px 20px;margin:18px 0;font-size:14.5px;}
+  ul{padding-left:20px;} li{margin-bottom:8px;}
+  .lede{font-size:16.5px;}
+  footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:13px;}
+</style>
+
+<div class="masthead">
+  <div class="wrap" style="padding-bottom:0">
+    <p class="eyebrow">Bohemi Round Two</p>
+    <h1>Your new pages, and where they go</h1>
+    <p class="sub">What each new piece is, the job it does, and where it should be linked from on your site.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section>
+  <p class="lede">Three new pages are written and waiting for your read. They work as a set. One
+  broad page covers the whole idea of an alternative engagement ring, and two narrower pages go
+  deep on the two stones people search for by name. The broad page sends visitors to the narrow
+  ones, and the narrow ones send visitors back up. That linking is the part that makes them work
+  as a group rather than as three separate pages.</p>
+</section>
+
+<section>
+  <p class="label">Why these three</p>
+  <h2>What your search numbers say right now</h2>
+  <p>These come from Google Search Console for the four weeks ending August 25, 2026. An
+  <strong>impression</strong> means Google showed a Bohemi page in someone's search results. The
+  <strong>average position</strong> is roughly where on the results list you appeared, where 1 to
+  10 is the first page.</p>
+  <ul>
+    <li><strong>"alternative engagement ring stones": 122 impressions, average position about 33.</strong>
+      People are searching this and Google is already showing you. Position 33 is about the fourth
+      page of results, and almost nobody scrolls that far. The broad page exists to move that.</li>
+    <li><strong>Salt-and-pepper diamonds: zero impressions in four weeks.</strong> Not a small
+      number, zero. You sell these stones and Google is not showing you for the term at all,
+      because there is no page on your site about them. That is what the new page fixes.</li>
+    <li><strong>Montana sapphire: three impressions in four weeks</strong>, all for very specific
+      shape searches. Same story, same fix.</li>
+  </ul>
+  <!-- FRAME:two-doors -->
+  <div class="note">
+    <strong>Two doors, and they no longer open together.</strong> There are now two separate ways
+    a person finds you. One is Google, where someone types a search and clicks a result. The other
+    is an AI assistant, where someone asks ChatGPT or Perplexity or Google's own AI answer to
+    recommend a studio, reads the answer, and comes straight to you. The numbers above only
+    describe the first door. Nothing that happens at the second door appears in them at all. Both
+    doors matter, and these three pages are built to open both, which is why they read like real
+    answers to real questions rather than pages stuffed with search terms.
+  </div>
+  <!-- /FRAME -->
+
+  <!-- CAVEAT:click-attribution -->
+  <div class="note">
+    <strong>What a zero here does not mean.</strong> A zero in Google's numbers does not mean
+    nobody came. A visit that arrives because an AI assistant recommended you never appears in
+    Google's numbers, so it is invisible on this page no matter how many people it brings. Your
+    rings also sell in person and by private invoice, so a page that Google records almost no
+    activity for can still be the reason someone walked through your door. Read everything above
+    as a map of where you cannot yet be found, and nothing more than that.
+  </div>
+  <!-- /CAVEAT -->
+</section>
+
+<section>
+  <p class="label">The pages</p>
+
+  <div class="card">
+    <span class="pill wait">Ready for your review</span>
+    <h3>Alternative Engagement Rings</h3>
+    <p>The broad one. It explains what an alternative engagement ring is, how you design around
+    the stone, what the three ways of working with you are, and what it costs and takes. It is the
+    page that should answer someone who types the category into Google, or asks an AI assistant to
+    recommend a studio.</p>
+    <dl class="row">
+      <dt>Suggested address</dt><dd><code>bohemi.com/pages/alternative-engagement-rings</code></dd>
+      <dt>Link to it from</dt><dd>Your main navigation menu, your Home page, every engagement ring
+        collection page, and your custom jewelry page. This page needs the most links pointing at
+        it of anything on the site.</dd>
+    </dl>
+  </div>
+
+  <div class="card">
+    <span class="pill wait">Ready for your review</span>
+    <h3>Salt-and-Pepper Diamond Engagement Rings</h3>
+    <p>Goes deep on one stone. Why the flecks are characteristics and not flaws, how they hold up
+    to daily wear, why they cost what they cost, and what to look for. Written to answer the
+    questions a buyer actually asks before they trust you with the decision.</p>
+    <dl class="row">
+      <dt>Suggested address</dt><dd><code>bohemi.com/pages/salt-and-pepper-diamond-engagement-rings</code></dd>
+      <dt>Link to it from</dt><dd>The broad page above, each of your salt-and-pepper stone
+        listings, and your gemstone guide article.</dd>
+    </dl>
+  </div>
+
+  <div class="card">
+    <span class="pill wait">Ready for your review</span>
+    <h3>Montana Sapphire Engagement Rings</h3>
+    <p>The same treatment for Montana sapphires. Where they come from, the traceability you can
+    offer that most cannot, the colors, and why they hold up in a ring worn every day.</p>
+    <dl class="row">
+      <dt>Suggested address</dt><dd><code>bohemi.com/pages/montana-sapphire-engagement-rings</code></dd>
+      <dt>Link to it from</dt><dd>The broad page above, each of your Montana sapphire listings, and
+        your gemstone guide article.</dd>
+    </dl>
+  </div>
+
+  <div class="card">
+    <span class="pill wait">Built, waiting to be placed</span>
+    <h3>The Stone Matcher</h3>
+    <p>A short set of questions that helps someone who knows they want something different, but
+    does not yet know what, arrive at a stone. It ends with a real recommendation and an
+    invitation to book. Its job is to turn an anonymous browser into someone you know something
+    about before they ever write to you.</p>
+    <dl class="row">
+      <dt>Where it lives</dt><dd>Either on your existing quiz page, or on its own page. Worth
+        deciding together, since you already pay for the quiz tool you have.</dd>
+      <dt>Link to it from</dt><dd>All three pages above, and your Home page.</dd>
+    </dl>
+  </div>
+
+  <div class="card">
+    <span class="pill live">Live on your site now</span>
+    <h3>156 stone and ring pages</h3>
+    <p>Already done and already working. Each one now carries a description in your voice, a
+    question and answer section, and a comparison showing how that stone differs from the
+    alternatives. Nothing for you to do here. They are listed so you can see how the new pages
+    connect to them: the two stone pages above should link down into these, and these link back
+    up.</p>
+  </div>
+
+  <div class="card">
+    <span class="pill wait">Drafted, on hold</span>
+    <h3>The booking page</h3>
+    <p>A rewrite of your existing appointments page, built to greet someone the way your open door
+    used to. On hold until you hear about the new space, because how it reads depends on whether
+    you have one location or two.</p>
+    <dl class="row">
+      <dt>Address</dt><dd><code>bohemi.com/pages/appointments</code>, which already exists. This
+        replaces the words on it, not the address.</dd>
+    </dl>
+  </div>
+</section>
+
+<section>
+  <p class="label">You asked specifically</p>
+  <h2>What to put on your Home page</h2>
+  <p>Three things, in this order of importance:</p>
+  <ul>
+    <li><strong>A link to the broad Alternative Engagement Rings page, high up.</strong> This is
+      the single most valuable link on your site. It tells Google and AI assistants that this page
+      is the one that matters, and it catches visitors who arrive knowing only that they want
+      something that is not a plain solitaire.</li>
+    <li><strong>A row of three, linking to the broad page and the two stone pages.</strong> Images
+      and a few words each. This gives a visitor who does not know your collections a way in based
+      on the stone they are drawn to, which is how most of them actually decide.</li>
+    <li><strong>The stone matcher, further down.</strong> For the visitor who is still browsing.
+      It gives them something to do other than leave.</li>
+  </ul>
+  <p>Tracy places all of this. You do not need to touch the theme.</p>
+</section>
+
+<section>
+  <p class="label">Next</p>
+  <h2>What I need from you</h2>
+  <p>Just a read and a yes on the three pages. They are linked from your command center under
+  Review. Comment on anything that does not sound like you, and I will fix it before it goes
+  anywhere near your site. Nothing publishes without your word.</p>
+</section>
+
+<footer>
+  Prepared for Heather by Red Pin Geek. Search numbers from Google Search Console, four weeks
+  ending August 25, 2026. Page counts verified against your live store the same day.
+</footer>
+
+</div>
+</body>
+</html>
