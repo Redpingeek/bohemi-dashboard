@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alternative Engagement Rings | Bohemi</title>
+<meta name="description" content="One-of-a-kind alternative engagement rings, designed around the stone by a gem expert in Boulder and built to last a lifetime. By appointment. Start your design.">
+<link rel="canonical" href="https://bohemi.com/pages/alternative-engagement-rings">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Alternative Engagement Rings | Bohemi Future Heirlooms">
+<meta property="og:description" content="One-of-a-kind alternative engagement rings, designed around the stone by a gem expert in Boulder and built to last a lifetime. By appointment. Start your design.">
+<meta property="og:url" content="https://bohemi.com/pages/alternative-engagement-rings">
+<meta property="og:image" content="https://bohemi.com/cdn/shop/files/All_Engagement_Rings_1728x.png">
+<meta property="og:site_name" content="Bohemi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Alternative Engagement Rings | Bohemi Future Heirlooms">
+<meta name="twitter:description" content="One-of-a-kind alternative engagement rings, designed around the stone by a gem expert in Boulder and built to last a lifetime. By appointment. Start your design.">
+<meta name="twitter:image" content="https://bohemi.com/cdn/shop/files/All_Engagement_Rings_1728x.png">
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Mulish:wght@300;400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --near-black:#131815; --forest:#536649; --sage:#bebdaa;
+    --cream:#f8f0e7; --oxblood:#611b1b; --rule:#e4ded2;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--near-black);
+       font-family:'Jost','Filson Pro',system-ui,-apple-system,sans-serif;
+       font-weight:300;font-size:17px;line-height:1.7}
+  .wrap{max-width:860px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:'Prata',Georgia,serif;font-weight:400;line-height:1.25}
+  h1{font-size:clamp(2.1rem,5.2vw,3.4rem);margin:0 0 .5em}
+  h2{font-size:clamp(1.45rem,3.2vw,2rem);margin:2.6em 0 .6em;color:var(--forest)}
+  h3{font-size:1.18rem;margin:2em 0 .4em}
+  p{margin:0 0 1.15em}
+  a{color:var(--forest);text-underline-offset:3px}
+
+  /* MOCKUP BANNER, remove on port */
+  .mock{background:var(--near-black);color:var(--cream);font-size:12.5px;
+        letter-spacing:.04em;padding:9px 24px;text-align:center}
+  .mock b{color:var(--sage)}
+
+  /* HERO: full-bleed banner with centered text overlay.
+     Matches her theme's image-with-text-overlay section:
+     200px on mobile, 450px from 768px up, heading 42px then 60px. */
+  .banner{position:relative;width:100%;height:200px;overflow:hidden;
+          display:flex;align-items:center;justify-content:center;text-align:center}
+  .banner img{position:absolute;inset:0;width:100%;height:100%;
+              object-fit:cover;object-position:center}
+  .banner::after{content:'';position:absolute;inset:0;
+                 background:linear-gradient(180deg,rgba(19,24,21,.50) 0%,rgba(19,24,21,.30) 42%,rgba(19,24,21,.58) 100%)}
+  .banner-copy{position:relative;z-index:2;padding:0 24px;color:var(--cream)}
+  .banner-copy h1{color:var(--cream);font-size:28px;margin:0;
+                  text-shadow:0 1px 18px rgba(19,24,21,.45)}
+  .banner-copy .eyebrow{margin:0 0 .7em;color:#e8dcc4;text-shadow:0 1px 10px rgba(19,24,21,.7)}
+  @media(min-width:768px){
+    .banner{height:450px}
+    .banner-copy h1{font-size:42px}
+  }
+  @media(min-width:992px){
+    .banner-copy h1{font-size:60px;max-width:12em;margin:0 auto}
+  }
+  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+           color:var(--sage)}
+
+  .lede{font-size:1.16rem;line-height:1.72}
+
+  /* STONE CARDS */
+  .stones{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:2em 0 1em}
+  .stone{background:#fff;border:1px solid var(--rule);display:flex;flex-direction:column}
+  .stone img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+  .stone-body{padding:20px 20px 22px}
+  .stone h3{margin:0 0 .35em;font-size:1.05rem}
+  .stone p{font-size:.94rem;line-height:1.62;margin:0 0 1em;color:#3c4440}
+  .stone a{font-size:.86rem;letter-spacing:.09em;text-transform:uppercase;
+           text-decoration:none;border-bottom:1px solid var(--sage);padding-bottom:2px;
+           margin-top:auto;align-self:flex-start}
+
+  /* TIERS */
+  .tiers{border-top:1px solid var(--rule);margin:1.6em 0}
+  .tier{display:grid;grid-template-columns:190px 1fr auto;gap:18px;
+        padding:20px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+  .tier b{font-family:'Prata',Georgia,serif;font-weight:400;font-size:1.08rem}
+  .tier span{color:#3c4440;font-size:.97rem}
+  .tier .time{color:var(--forest);font-size:.86rem;letter-spacing:.07em;
+              text-transform:uppercase;white-space:nowrap}
+
+  /* PULLQUOTE */
+  .pull{border-left:3px solid var(--sage);padding:6px 0 6px 26px;margin:2.2em 0;
+        font-family:'Prata',Georgia,serif;font-size:1.3rem;line-height:1.5;color:var(--forest)}
+
+  /* FAQ */
+  details{border-bottom:1px solid var(--rule)}
+  summary{cursor:pointer;list-style:none;padding:18px 34px 18px 0;position:relative;
+          font-family:'Prata',Georgia,serif;font-size:1.05rem}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:'+';position:absolute;right:4px;top:15px;
+                 font-size:1.4rem;color:var(--forest);font-family:'Jost',sans-serif}
+  details[open] summary::after{content:'\2212'}
+  .faq-a{padding:0 0 20px;font-size:.99rem;color:#3c4440}
+
+  /* CTA */
+  .cta{background:var(--forest);color:var(--cream);text-align:center;
+       padding:64px 24px;margin-top:4em}
+  .cta h2{color:var(--cream);margin-top:0}
+  .cta p{max-width:44ch;margin:0 auto 1.8em;color:#e8e2d6}
+  .btn{display:inline-block;background:var(--cream);color:var(--near-black);
+       text-decoration:none;padding:15px 38px;letter-spacing:.14em;
+       text-transform:uppercase;font-size:.8rem}
+  footer{background:var(--near-black);color:var(--sage);text-align:center;
+         padding:26px;font-size:12px;letter-spacing:.06em}
+
+  @media(max-width:820px){
+    .stones{grid-template-columns:1fr}
+    .stone{display:grid;grid-template-columns:130px 1fr}
+    .stone img{aspect-ratio:1/1;height:100%}
+    .tier{grid-template-columns:1fr;gap:4px}
+    .tier .time{justify-self:start}
+  }
+
+
+    /* ===== Bohemi realistic site chrome (header + footer), .bsite- scoped ===== */
+    .bsite-head{background:#19261e;padding:20px 28px 0;font-family:'Mulish',-apple-system,sans-serif;}
+    .bsite-head .top{display:flex;align-items:center;justify-content:space-between;max-width:1280px;margin:0 auto;gap:24px;}
+    .bsite-head .ic{display:flex;gap:20px;align-items:center;flex:1;}
+    .bsite-head .ic.r{justify-content:flex-end;}
+    .bsite-head .ic svg{width:19px;height:19px;stroke:#cdb083;fill:none;stroke-width:1.4;}
+    .bsite-logo{font-family:'Prata',serif;font-size:30px;letter-spacing:.32em;color:#cdb083;text-decoration:none;line-height:1;text-align:center;padding-left:.32em;white-space:nowrap;}
+    .bsite-logo small{display:block;font-family:'Mulish',sans-serif;font-size:8.5px;font-weight:500;letter-spacing:.46em;margin-top:9px;color:#cdb083;padding-left:.46em;}
+    .bsite-nav{display:flex;gap:28px;justify-content:center;align-items:center;flex-wrap:wrap;max-width:1280px;margin:18px auto 0;padding:16px 0 18px;}
+    .bsite-nav a{font-family:'Mulish',sans-serif;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#cdb083;text-decoration:none;padding-bottom:7px;border-bottom:2px solid transparent;}
+    .bsite-nav a.on{border-bottom-color:#cdb083;}
+    .bsite-flag{background:#611b1b;color:#f8f0e7;text-align:center;font-family:'Mulish',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:9px 22px;}
+    .bsite-foot{background:#19261e;padding:62px 28px 0;font-family:'Mulish',-apple-system,sans-serif;border-top:1px solid rgba(205,176,131,.16);}
+    .bsite-foot .grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1.15fr 1fr 1fr;gap:30px;}
+    .bsite-foot h4{font-family:'Mulish',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#cdb083;margin:0 0 18px;}
+    .bsite-foot .col a{display:block;font-family:'Prata',serif;font-size:14.5px;color:#cdb083;text-decoration:none;margin:0 0 13px;opacity:.9;}
+    .bsite-foot .col a:hover{opacity:1;}
+    .bsite-foot .mid{text-align:center;}
+    .bsite-foot .badge{width:120px;height:120px;border:1px solid rgba(205,176,131,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
+    .bsite-foot .badge svg{width:42px;height:56px;stroke:#cdb083;fill:none;stroke-width:1.3;}
+    .bsite-foot .social{display:flex;gap:20px;justify-content:center;}
+    .bsite-foot .social svg{width:21px;height:21px;stroke:#cdb083;fill:none;stroke-width:1.3;}
+    .bsite-foot .legal{max-width:1280px;margin:46px auto 0;display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;padding-bottom:34px;}
+    .bsite-foot .legal .meta{font-family:'Prata',serif;font-size:12.5px;color:rgba(205,176,131,.72);line-height:1.75;}
+    .bsite-foot .legal .lk a{display:inline-block;font-family:'Prata',serif;font-size:13px;color:#cdb083;text-decoration:none;margin-left:24px;}
+    .bsite-foot .ox{height:10px;background:#611b1b;margin:0 -28px;}
+    @media(max-width:860px){
+      .bsite-logo{font-size:21px;}
+      .bsite-head .ic.l{display:none;}
+      .bsite-nav{gap:14px;}
+      .bsite-nav a{font-size:10px;letter-spacing:.08em;padding-bottom:5px;}
+      .bsite-foot .grid{grid-template-columns:1fr 1fr;gap:30px 22px;}
+      .bsite-foot .mid{grid-column:1 / -1;order:-1;margin-bottom:8px;}
+      .bsite-foot .legal{flex-direction:column;}
+    }
+
+
+  /* REAL COMMISSIONS */
+  .comm{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:1.4em 0 .5em}
+  .comm a{display:block;text-decoration:none;color:inherit;background:#fff;
+          border:1px solid var(--rule);padding:18px 18px 20px;transition:border-color .15s}
+  .comm a:hover{border-color:var(--forest)}
+  .comm .who{font-family:'Prata',Georgia,serif;font-size:1.02rem;color:var(--forest);
+             display:block;margin-bottom:.35em}
+  .comm .what{font-size:.92rem;line-height:1.55;color:#3c4440;display:block}
+  .comm .go{font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;
+            color:#6f6a5f;display:block;margin-top:.9em}
+  @media(max-width:760px){ .comm{grid-template-columns:1fr} }
+
+
+  .comm a{padding:0;overflow:hidden;display:flex;flex-direction:column}
+  .comm a img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#f0e7d8}
+  .comm .body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+  .comm .go{margin-top:auto;padding-top:.8em}
+
+
+  .comm.four{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:900px){ .comm.four{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:560px){ .comm.four{grid-template-columns:1fr} }
+
+
+  /* COMMISSION STRIP: scroll-snap, no JavaScript, every card a real link in the DOM */
+  .strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(232px,268px);
+         gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
+         padding:4px 4px 18px;margin:1.4em -4px .4em;
+         scrollbar-width:thin;scrollbar-color:var(--sage) transparent}
+  .strip::-webkit-scrollbar{height:8px}
+  .strip::-webkit-scrollbar-thumb{background:var(--sage);border-radius:4px}
+  .strip::-webkit-scrollbar-track{background:#efe6d9;border-radius:4px}
+  .strip a{scroll-snap-align:start;display:flex;flex-direction:column;
+           background:#fff;border:1px solid var(--rule);text-decoration:none;color:inherit;
+           transition:border-color .15s}
+  .strip a:hover,.strip a:focus-visible{border-color:var(--forest);outline:none}
+  .strip a:focus-visible{box-shadow:0 0 0 2px var(--forest)}
+  .strip img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#f0e7d8}
+  .strip .body{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1}
+  .strip .who{font-family:'Prata',Georgia,serif;font-size:.98rem;color:var(--forest);
+              margin-bottom:.3em;line-height:1.3}
+  .strip .go{font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;
+             color:#6f6a5f;margin-top:auto;padding-top:.8em}
+  .striphint{font-size:.82rem;color:#6f6a5f;font-style:italic;margin:.1em 0 2em}
+
+
+  .byline{font-size:.88rem;color:#6f6a5f;border-top:1px solid var(--rule);
+          padding-top:16px;margin:2.6em 0 0;line-height:1.6}
+  .byline strong{color:var(--forest);font-weight:500}
+
+  .grounds{width:100%;border-collapse:collapse;font-size:14.5px;margin:1.2em 0 .4em}
+  .grounds th{font-family:'Prata',Georgia,serif;font-weight:400;font-size:15px;
+              background:#f0e7d8;color:#19261e;padding:11px 14px;text-align:left;
+              border-bottom:2px solid var(--forest)}
+  .grounds td{padding:11px 14px;border-bottom:1px solid var(--rule);vertical-align:top;
+              line-height:1.55;color:#3c4440}
+  .grounds td:first-child{font-weight:500;color:var(--forest);width:22%;white-space:nowrap}
+  @media(max-width:600px){ .grounds{font-size:13.5px} 
+  .grounds.prov td:first-child{width:19%}
+</style>
+</head>
+<body>
+
+<div class="mock">MOCKUP for review &middot; <b>Bohemi</b> &middot; Alternative Engagement Rings &middot; copy is Heather&rsquo;s approved version &middot; this bar is not part of the page</div>
+
+<header class="bsite-head">
+  <div class="top">
+    <div class="ic l">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M5 21c0-4 3-6.5 7-6.5s7 2.5 7 6.5"></path></svg>
+      <svg viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7z"></path><path d="M9 8a3 3 0 0 1 6 0"></path></svg>
+    </div>
+    <a class="bsite-logo" href="#">BOHEMI<small>FUTURE HEIRLOOMS</small></a>
+    <div class="ic r">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M5 21c0-4 3-6.5 7-6.5s7 2.5 7 6.5"></path></svg>
+      <svg viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7z"></path><path d="M9 8a3 3 0 0 1 6 0"></path></svg>
+    </div>
+  </div>
+  <nav class="bsite-nav">
+    <a href="#">Engagement Rings</a><a href="#">Jewelry</a><a href="#">Gifts</a><a href="#">Ring Education</a><a href="#">Permanent Jewelry</a><a class="on" href="#">Appointments</a><a href="#">Stone Catalog</a><a href="#">Custom</a>
+  </nav>
+</header>
+
+
+<section class="banner">
+  <img src="https://bohemi.com/cdn/shop/files/All_Engagement_Rings_1728x.png" alt="Bohemi alternative engagement rings">
+  <div class="banner-copy">
+    <p class="eyebrow">Boulder, Colorado</p>
+    <h1>Alternative Engagement Rings</h1>
+  </div>
+</section>
+
+<div class="wrap">
+
+<p class="lede" style="margin-top:2.6em">An alternative engagement ring is any ring that starts from what you actually love, not from a showroom case of near-identical diamond solitaires. It might be a Montana sapphire the color of a lake at dusk, a salt-and-pepper diamond with a galaxy inside it, or a fantasy-cut stone that catches light in a way a standard cut never will. At Bohemi, every ring is designed around its stone and made to be worn for a lifetime. Different is better, and it always has been.</p>
+
+<p>Bohemi is a Boulder design studio for people who want the opposite of off-the-shelf. Each ring is designed by a gem expert and built around one stone. Because no two stones are alike, no two rings come out exactly the same, even when the design is one we have made before. You are not picking a finished ring off a shelf. You are choosing the stone it gets built around, and that is what makes it yours.</p>
+
+<h2>What does it mean to design a ring around the stone?</h2>
+<p>The stone is the heart of the ring, so it comes first. We source and select the center stone with you, and the design follows it. In a bespoke piece that means drawing from scratch around the stone. In a ready-made or made-to-measure piece it means fitting an existing design to the stone you chose. That order matters either way. It is what lets the metal, the profile, and the setting serve the stone instead of fighting it, and it is why no two Bohemi rings come out exactly the same.</p>
+<p>It also means you are guided by someone who knows stones deeply: which ones belong in a ring worn every day, which ones do not, and why. That guidance is the real difference between a ring that dazzles in photos and one that is still whole in thirty years.</p>
+
+<h2>Is every Bohemi ring one of a kind?</h2>
+<p>The stone always is. The design sometimes is, and the honest answer depends on which ring you&rsquo;re buying. Some Bohemi rings are true one-offs: made once, around a stone that can&rsquo;t be found again, and when that ring sells, it&rsquo;s gone. Others are designs Heather can build again, even though the stone in them never repeats. A lab diamond can be matched exactly. A particular Montana parti sapphire cannot.</p>
+<p>Both are honest, and neither is lesser. What stays true across all of it is that the stone is chosen for you and the ring is built around that stone, so even a design we have made before does not come out the same twice. If it matters to you that nobody else can ever have your ring, say so at the start and we will build you one that cannot be repeated.</p>
+
+<div class="pull">You are not picking a finished ring off a shelf. You are choosing the stone it gets built around.</div>
+
+
+<h2>One design, three rings, no repeats</h2>
+<p>Nyx is a design Heather has built many times. Here it is three of those times. The design is the same starting point each time and the stone never is, which is why a Bohemi ring built from an existing design still does not come out like anybody else&rsquo;s.</p>
+<div class="comm"><a href="https://bohemi.com/blogs/customs/custom-nyx-witchy-engagement-ring-story"><img src="https://bohemi.com/cdn/shop/articles/Babs_Hex_ring8_e8c4c82f-a422-4f72-8f1e-8d12b6e5f59c_1200x1200.jpg?v=1779231058" alt="A hexagon Nyx engagement ring with a dark, sharpened silhouette" loading="lazy"><span class="body"><span class="who">Babs</span><span class="what">Drawn to the Nyx collection's dark, magnetic energy. A hexagon, witchy and sharp.</span><span class="go">Read the commission</span></span></a><a href="https://bohemi.com/blogs/customs/kite-diamond-modified-nyx-engagement-ring"><img src="https://bohemi.com/cdn/shop/articles/Jodi_engagement_ring9_7e540ba3-76b9-4acd-b7da-5b26aca552dc_1200x1200.jpg?v=1785945625" alt="A modified Nyx engagement ring set with an heirloom diamond and kite side stones" loading="lazy"><span class="body"><span class="who">Jodi and Greg</span><span class="what">An heirloom diamond given a Nyx edge, with kite side stones.</span><span class="go">Read the commission</span></span></a><a href="https://bohemi.com/blogs/customs/14k-white-gold-nyx-engagement-ring"><img src="https://bohemi.com/cdn/shop/articles/Ben_14kWG_Nyx_eng_ring_1200x1200.jpg?v=1779233643" alt="A Nyx engagement ring in 14k white gold" loading="lazy"><span class="body"><span class="who">Ben and Heather</span><span class="what">They walked into the store and fell for the Nyx, in 14k white gold.</span><span class="go">Read the commission</span></span></a></div>
+<p class="galnote">Three separate commissions from the portfolio, each written up when it was finished.</p>
+
+<h2>Which stones work best for an alternative engagement ring?</h2>
+<p>Most alternative engagement rings begin with one of these. Each has its own page, and each is worth understanding before you choose.</p>
+
+<div class="stones">
+  <div class="stone">
+    <img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/Harlow_StarBrite_Sapphire_Engagement_Ring.jpg?v=1762547006" alt="A star fantasy cut sapphire set low in a platinum half-bezel">
+    <div class="stone-body">
+      <h3>Fantasy cuts</h3>
+      <p>Concave precision faceting on a shallow pavilion. It holds an even brightness from many angles as your hand moves, shows a larger face for its carat weight, and sits lower and more securely for everyday wear. Not more sparkle. A stone that stays alive in real light.</p>
+      <a href="/collections/starbrite-cut-stones">See the collection</a>
+    </div>
+  </div>
+  <div class="stone">
+    <img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/Stellaris_Engagement_Ring_14k_Yellow_Gold.jpg?v=1762547686" alt="Stellaris, a hexagon Montana sapphire engagement ring in 14k yellow gold">
+    <div class="stone-body">
+      <h3>Montana sapphires</h3>
+      <p>At a 9 on the Mohs scale, genuinely built for daily wear, in nearly every color. Natural, only ever heat treated, always disclosed, and most carry mine-level traceability back to a specific Montana mine, which is rare in this industry.</p>
+      <a href="/pages/montana-sapphire-engagement-rings">Explore sapphires</a>
+    </div>
+  </div>
+  <div class="stone">
+    <img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/Nyx_Engagement_Ring_14k_Yellow_Gold.jpg?v=1762547395" alt="Nyx, an elongated hexagon salt and pepper diamond engagement ring">
+    <div class="stone-body">
+      <h3>Salt-and-pepper diamonds</h3>
+      <p>Inclusions under the surface, black and white flecks scattered like a night sky. A traditional jeweler calls those flaws. We call them mother nature&rsquo;s fingerprint. Full hardness at a 10, and far more stone per dollar.</p>
+      <a href="/pages/salt-and-pepper-diamond-engagement-rings">Explore salt-and-pepper</a>
+    </div>
+  </div>
+</div>
+
+<h3>Should you choose a lab diamond or a natural one?</h3>
+<p>Beyond these, we work in spinel, and in both lab and natural diamonds. A lab diamond, also called a synthetic diamond, is a real diamond, chemically and optically identical to a mined one, and usually many thousands less, which is why most couples choose it. Some choose a synthetic to sidestep sourcing concerns, and some want a natural stone specifically. There is no single right answer, only the one that fits your budget and your values. We will talk it through honestly, including which softer stones we steer away from for a ring you will wear every day.</p>
+
+<h2>Will an alternative engagement ring hold up to daily wear?</h2>
+<p>Every Bohemi ring is designed to survive a real life. That is a standard, not a slogan. There is enough metal around every stone to hold it safely, never thinner than half a millimeter at the setting, because a ring you have to baby is not a ring you can actually live in. The trend of a giant stone on a wisp of a band photographs beautifully but does not hold up, so we do not make it. A substantial stone gets a band substantial enough to balance and protect it.</p>
+<p>This is also where honest guidance earns its keep. Some stones are softer than they look and are prone to chipping or clouding with daily wear, and we will tell you before you fall for one, not after. The goal is never the sale. The goal is a ring that is still yours, and still whole, a lifetime from now.</p>
+
+<h2>Where do the stones and metals come from?</h2>
+<p>Every sapphire we set is natural, the only treatment ever used is heat, and we always disclose it. Our Montana sapphires can be traced to the source, to named grounds like Rock Creek, Yogo Gulch, Dry Cottonwood Creek and the Missouri River gravel bars. Because they are mined in the United States, they come from operations held to regulated labor and environmental standards, which is a real part of why couples who care where a stone comes from choose them.</p>
+<p>Salt-and-pepper diamonds carry no grading report, and that is not a gap. That system was built to score eye-clean, colorless stones, not a diamond whose whole character is what sits inside it. Our white and colored diamonds are sourced through Kimberley Process compliant channels. Our gold is casting grain produced from reclaimed scrap.</p>
+<p>Where we cannot claim something, we do not. You will not see a certification here that we do not hold, and you will not be told a stone is untreated when the honest answer is heat, always disclosed.</p>
+
+
+<h3 style="margin-top:2.2em">What we say, and what we will not</h3>
+<div style="overflow-x:auto"><table class="grounds prov">
+<tr><th>Material</th><th>What we can tell you</th><th>What we will not claim</th></tr>
+<tr><td>Montana sapphire</td><td>Natural, US mined, traceable to a named ground. Heat is the only treatment ever used, and it is always disclosed.</td><td>That a stone is unheated, unless it is one we can document.</td></tr>
+<tr><td>Other sapphire</td><td>Natural, named for its color character: Australia, Madagascar, Tanzania, Nigeria.</td><td>Mine-level traceability. Outside Montana we know the country, not the mine.</td></tr>
+<tr><td>Salt-and-pepper diamond</td><td>A real diamond, 10 on the Mohs scale, hand selected for soundness.</td><td>A grading report. The 4C scale assumes an eye-clean colorless stone, so there is no grade to issue.</td></tr>
+<tr><td>White and colored diamond</td><td>Sourced through Kimberley Process compliant channels.</td><td>That any single stone carries a certificate under the scheme. It governs rough shipments between states, not individual stones.</td></tr>
+<tr><td>Gold</td><td>Casting grain produced from reclaimed scrap. Real recycled gold.</td><td>"100 percent recycled," or any certified-gold claim.</td></tr>
+<tr><td>Standards</td><td>We follow AGTA's disclosure practice by choice.</td><td>Membership or accreditation from AGTA. Bohemi holds neither, and the practice is a choice rather than a rule.</td></tr>
+</table></div>
+<p class="galnote">The right-hand column is the unusual one. Most of this industry only publishes the left.</p>
+
+<h2>Do you make anything besides engagement rings?</h2>
+<p>Alternative means the whole range, not one occasion. We design men&rsquo;s pieces, wedding bands, triple stacks built to sit together as one, heirloom stones reset into something new, and rings that mark a fresh start rather than a beginning. If it is meaningful to you, it belongs here. That is what &ldquo;different is better&rdquo; actually means in practice: your piece, your story, on your terms.</p>
+
+
+<h2>What this actually looks like</h2>
+<p>Every Bohemi ring is written up when it is finished. These are three, in the couples' own circumstances rather than ours.</p>
+<div class="strip"><a href="https://bohemi.com/blogs/customs/engagement-rings-jared-fantasy-sapphire-twist-band-boho"><img src="https://bohemi.com/cdn/shop/articles/Jared_ivie_twist_sapphire_ring2_1200x1200.jpg?v=1787230675" alt="Custom Fantasy Sapphire Engagement Ring with Twist Band" loading="lazy"><span class="body"><span class="who">Custom Fantasy Sapphire Engagement Ring with Twist Band</span><span class="go">Read the commission</span></span></a><a href="https://bohemi.com/blogs/customs/a-deep-green-sapphire-engagement-ring-inspired-by-the-stars-maddie-clyde-s-story"><img src="https://bohemi.com/cdn/shop/articles/Maddie_stellaris_eng_ring4_1200x1200.jpg?v=1778278159" alt="A Deep Green Sapphire Engagement Ring Inspired by the Stars" loading="lazy"><span class="body"><span class="who">A Deep Green Sapphire Engagement Ring Inspired by the Stars</span><span class="go">Read the commission</span></span></a><a href="https://bohemi.com/blogs/customs/engagement-rings-carissa-blake-john-dyer-starbrite-hexagon-sapphire"><img src="https://bohemi.com/cdn/shop/articles/Blake_engagement_ring3_b63c07d7-c726-42df-8ba7-c8ebc93952d3_1200x1200.jpg?v=1787240036" alt="Custom John Dyer Starbrite Hexagon Sapphire Engagement Ring" loading="lazy"><span class="body"><span class="who">Custom John Dyer Starbrite Hexagon Sapphire Engagement Ring</span><span class="go">Read the commission</span></span></a><a href="https://bohemi.com/blogs/customs/engagement-rings-eric-rainy-arcadia-salt-pepper-pear"><img src="https://bohemi.com/cdn/shop/articles/eric_s_p_arcadia_eng_ring_1200x1200.jpg?v=1774479911" alt="Arcadia Pear Salt &amp; Pepper Diamond Engagement Ring in Yellow Gold" loading="lazy"><span class="body"><span class="who">Arcadia Pear Salt &amp; Pepper Diamond Engagement Ring in Yellow Gold</span><span class="go">Read the commission</span></span></a><a href="https://bohemi.com/blogs/customs/wedding-bands-alana-ethan-star-set-nyx-elopement"><img src="https://bohemi.com/cdn/shop/articles/Alana_ethan_wedding_bands_2490554f-067f-481c-8d55-80cd864f282d_1200x1200.jpg?v=1778707467" alt="Custom Star Set Wedding Band &amp; Men&#x27;s Nyx Band in Yellow Gold" loading="lazy"><span class="body"><span class="who">Custom Star Set Wedding Band &amp; Men&#x27;s Nyx Band in Yellow Gold</span><span class="go">Read the commission</span></span></a><a href="https://bohemi.com/blogs/customs/engagement-rings-taylyn-josh-heirloom-oval-tulip-milgrain"><img src="https://bohemi.com/cdn/shop/articles/Taylyn_oval_tulip_engagement_ring9_449aa89f-57f6-4670-bd0f-e60cd10475a2_1200x1200.jpg?v=1787191842" alt="Heirloom Gold &amp; Lab Diamond Tulip Engagement Ring" loading="lazy"><span class="body"><span class="who">Heirloom Gold &amp; Lab Diamond Tulip Engagement Ring</span><span class="go">Read the commission</span></span></a><a href="https://bohemi.com/blogs/customs/engagement-rings-jonah-eden-moissanite-marquise-twisted-band"><img src="https://bohemi.com/cdn/shop/articles/Jonah_moissanite_engagement_ring5_1200x1200.jpg?v=1787192998" alt="Custom Moissanite Marquise Engagement Ring in 10k White Gold" loading="lazy"><span class="body"><span class="who">Custom Moissanite Marquise Engagement Ring in 10k White Gold</span><span class="go">Read the commission</span></span></a><a href="https://bohemi.com/blogs/customs/wedding-bands-brooke-ryan-platinum-hand-engraved-wedding-bands"><img src="https://bohemi.com/cdn/shop/articles/Brooke_Ryan_wedding_bands_1200x1200.jpg?v=1781154571" alt="Custom Platinum Wedding Bands with Hand Engraving" loading="lazy"><span class="body"><span class="who">Custom Platinum Wedding Bands with Hand Engraving</span><span class="go">Read the commission</span></span></a></div>
+<p class="striphint">Scroll for more. Every one of these is a ring Heather made, written up when it was finished.</p>
+<h2>How much does an alternative engagement ring cost, and how long does it take?</h2>
+<p>It begins with a free consultation, in the Boulder studio or virtually, with no sales pitch. From there we source your stone, design around it in three to five concepts with room to revise, and price it transparently so you always know the full cost before the next step. One promise we hold to: we work under your top-end budget, not over it.</p>
+<p>There are three ways in, depending on how custom you want to go:</p>
+
+<div class="tiers">
+  <div class="tier"><b>Ready-made</b><span>An existing design with a stone from the catalog, from around $4,000.</span><span class="time">4 to 6 weeks</span></div>
+  <div class="tier"><b>Made-to-measure</b><span>An existing design adapted to you, roughly $6,000 to $10,000.</span><span class="time">6 to 8 weeks</span></div>
+  <div class="tier"><b>Bespoke</b><span>A fully custom piece designed from scratch, generally $8,000 to $15,000 and up.</span><span class="time">8 to 12 weeks</span></div>
+</div>
+
+<p>Most couples land between $7,000 and $15,000, and the stone is the biggest lever. If you have a date in mind, it is best to start a few months ahead, and longer if we are sourcing a rare stone for you.</p>
+<p>The hardest part is usually saying what you want, because most people are not jewelers and do not have the vocabulary for it. That translation is the real craft here: you bring a feeling, a few saved images, a vibe, and we turn it into a real design that lasts. Clients tend to describe it the same way.</p>
+
+<div class="pull">She understood what I meant even when I could not say it.</div>
+
+<p class="byline">Written and checked by <strong>Heather Ng, A.J.P.</strong>, owner, jeweler and designer at Bohemi in Boulder, Colorado. Every stone described here was selected by her.</p>
+<h2 style="margin-bottom:.8em">Questions people ask first</h2>
+
+<details><summary>What is an alternative engagement ring?</summary><div class="faq-a">It is a ring built around what you love rather than a standard diamond solitaire. That usually means a distinctive center stone (a fantasy cut, a Montana sapphire, a salt-and-pepper diamond, a colored stone), a one-of-a-kind design, or both. At Bohemi, every ring is designed around its stone. A bespoke piece is designed for one person and never repeated.</div></details>
+<details><summary>Are lab diamonds real diamonds?</summary><div class="faq-a">Yes. A lab diamond, also called a synthetic diamond, is chemically and optically identical to a mined diamond. The only difference is that one is grown in a lab and the other is pulled from the earth. It usually costs many thousands less, which is why most couples choose it. One honest note: lab diamonds have essentially no resale value, so buy one to wear and keep.</div></details>
+<details><summary>Are the inclusions in a salt-and-pepper diamond flaws?</summary><div class="faq-a">No. Those black and white flecks are natural characteristics, and every stone&rsquo;s pattern is one of a kind. A salt-and-pepper diamond is still a full-hardness diamond at a 10 on the Mohs scale, so it stands up to daily wear, and it lives outside the commodity white-diamond market, so you get more stone for your budget.</div></details>
+<details><summary>Does a fantasy cut sparkle more than a standard cut?</summary><div class="faq-a">Not exactly, and that is the honest answer. A standard brilliant cut actually scintillates more. What a fantasy cut gives you is an even brightness that holds from many angles as your hand moves, a larger face for its carat weight, and a lower, more secure setting for everyday wear.</div></details>
+<details><summary>Where do your sapphires come from?</summary><div class="faq-a">They are all natural, only ever heat treated, with treatment always disclosed. Most carry mine-level traceability back to a specific Montana mine, which is rare in the industry. We also love sapphires from Australia for their teal-yellow color zoning, Madagascar&rsquo;s Royal Blue, Tanzania&rsquo;s vivid purples, and Nigeria&rsquo;s unmatched saturated greens.</div></details>
+<details><summary>Can I design something completely my own?</summary><div class="faq-a">Yes, and you do not need the words for it. You bring the feeling and a few images, and we translate that into a real design built to last. The studio is by appointment, so your consultation time is entirely yours.</div></details>
+<details><summary>Can you use a stone I already own?</summary><div class="faq-a">Yes. Resetting an heirloom stone into something new is part of what we do, alongside men&rsquo;s pieces, wedding bands, and stacks built to sit together.</div></details>
+
+</div>
+
+<section class="cta">
+  <h2>Start your ring</h2>
+  <p>The studio is by appointment, which means when you come in, the time is entirely yours.</p>
+  <a class="btn" href="/pages/appointments">Book a consultation</a>
+</section>
+
+<footer class="bsite-foot">
+  <div class="grid">
+    <div class="col">
+      <h4>About</h4>
+      <a href="#">Our Story</a><a href="#">Our Jewelry Store</a><a href="#">Shipping &amp; Ordering</a><a href="#">Returns &amp; Exchanges</a><a href="#">Wear &amp; Repair</a><a href="#">Trust</a>
+    </div>
+    <div class="col">
+      <h4>Services</h4>
+      <a href="#">Permanent Jewelry</a><a href="#">Custom &amp; Heirloom</a><a href="#">Precious Metal Credit</a><a href="#">Book Appointments</a><a href="#">Contact Us</a><a href="#">FAQs</a>
+    </div>
+    <div class="mid">
+      <div class="badge"><svg viewBox="0 0 42 56"><path d="M9 4h24M9 52h24M12 4c0 13 18 19 18 24s-18 11-18 24M30 4c0 13-18 19-18 24s18 11 18 24"></path></svg></div>
+      <div class="social">
+        <svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1.1"></circle></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 0 0-3.1 16.4c-.07-.7-.02-1.7.16-2.5l1-4.2s-.25-.5-.25-1.3c0-1.2.7-2.1 1.6-2.1.75 0 1.1.56 1.1 1.23 0 .75-.48 1.9-.73 2.95-.2.88.44 1.6 1.3 1.6 1.57 0 2.6-2 2.6-4.37 0-1.8-1.2-3.15-3.45-3.15a3.9 3.9 0 0 0-4.06 3.9c0 .78.23 1.32.6 1.74.16.2.18.28.12.5l-.17.68c-.06.22-.23.3-.5.18-1.05-.43-1.55-1.6-1.55-2.9C6.5 7.9 8.3 5.6 12 5.6c2.97 0 4.95 2.13 4.95 4.43 0 3.05-1.7 5.3-4.2 5.3-.84 0-1.63-.45-1.9-.96l-.5 1.95c-.18.7-.6 1.45-.86 1.95A8.5 8.5 0 1 0 12 3.5z"></path></svg>
+        <svg viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"></rect><path d="M3.5 6.5l8.5 6 8.5-6"></path></svg>
+      </div>
+    </div>
+    <div class="col">
+      <h4>Shop</h4>
+      <a href="#">Bolo Bar</a><a href="#">Engagement Rings</a><a href="#">Designers</a><a href="#">Gift Cards</a><a href="#">Ring Sizers</a><a href="#">Stone Catalog</a>
+    </div>
+    <div class="col">
+      <h4>Education</h4>
+      <a href="#">Blog</a><a href="#">Metals</a><a href="#">Financing</a><a href="#">Inspiration</a><a href="#">FAQs</a><a href="#">Testimonials</a>
+    </div>
+  </div>
+  <div class="legal">
+    <div class="meta">&copy; 2026 Bohemi. Design &amp; development by TracySailors.com.<br>Bohemi Jewelry Store on the west end of Pearl St. in downtown Boulder, Colorado<br>1909 9th St., Unit 130 | Boulder, Colorado 80302 | (720) 636-2759</div>
+    <div class="lk"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+  </div>
+  <div class="ox"></div>
+</footer>
+
+
+<!-- Schema for Tracy: FAQPage is DERIVED from the visible accordion above.
+     If the accordion changes, regenerate this rather than editing it by hand. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an alternative engagement ring?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is a ring built around what you love rather than a standard diamond solitaire. That usually means a distinctive center stone (a fantasy cut, a Montana sapphire, a salt-and-pepper diamond, a colored stone), a one-of-a-kind design, or both. At Bohemi, every ring is designed around its stone. A bespoke piece is designed for one person and never repeated."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are lab diamonds real diamonds?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A lab diamond, also called a synthetic diamond, is chemically and optically identical to a mined diamond. The only difference is that one is grown in a lab and the other is pulled from the earth. It usually costs many thousands less, which is why most couples choose it. One honest note: lab diamonds have essentially no resale value, so buy one to wear and keep."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are the inclusions in a salt-and-pepper diamond flaws?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Those black and white flecks are natural characteristics, and every stone\u2019s pattern is one of a kind. A salt-and-pepper diamond is still a full-hardness diamond at a 10 on the Mohs scale, so it stands up to daily wear, and it lives outside the commodity white-diamond market, so you get more stone for your budget."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a fantasy cut sparkle more than a standard cut?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not exactly, and that is the honest answer. A standard brilliant cut actually scintillates more. What a fantasy cut gives you is an even brightness that holds from many angles as your hand moves, a larger face for its carat weight, and a lower, more secure setting for everyday wear."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do your sapphires come from?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They are all natural, only ever heat treated, with treatment always disclosed. Most carry mine-level traceability back to a specific Montana mine, which is rare in the industry. We also love sapphires from Australia for their teal-yellow color zoning, Madagascar\u2019s Royal Blue, Tanzania\u2019s vivid purples, and Nigeria\u2019s unmatched saturated greens."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I design something completely my own?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, and you do not need the words for it. You bring the feeling and a few images, and we translate that into a real design built to last. The studio is by appointment, so your consultation time is entirely yours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you use a stone I already own?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Resetting an heirloom stone into something new is part of what we do, alongside men\u2019s pieces, wedding bands, and stacks built to sit together."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://bohemi.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Alternative Engagement Rings",
+      "item": "https://bohemi.com/pages/alternative-engagement-rings"
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://bohemi.com/pages/alternative-engagement-rings#webpage",
+  "url": "https://bohemi.com/pages/alternative-engagement-rings",
+  "name": "Alternative Engagement Rings | Bohemi Future Heirlooms",
+  "description": "One-of-a-kind alternative engagement rings, designed around the stone by a gem expert in Boulder and built to last a lifetime. By appointment. Start your design.",
+  "dateModified": "2026-09-22",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://bohemi.com/",
+    "name": "Bohemi"
+  },
+  "about": {
+    "@id": "https://bohemi.com/#studio"
+  },
+  "author": {
+    "@id": "https://bohemi.com/#heather"
+  },
+  "publisher": {
+    "@id": "https://bohemi.com/#studio"
+  },
+  "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://bohemi.com/cdn/shop/files/All_Engagement_Rings_1728x.png"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "JewelryStore",
+      "@id": "https://bohemi.com/#studio",
+      "name": "Bohemi",
+      "alternateName": "Bohemi Future Heirlooms",
+      "url": "https://bohemi.com/",
+      "telephone": "+1-303-819-2618",
+      "email": "heather@bohemi.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1909 9th St, Unit 130",
+        "addressLocality": "Boulder",
+        "addressRegion": "CO",
+        "postalCode": "80302",
+        "addressCountry": "US"
+      },
+      "founder": {
+        "@id": "https://bohemi.com/#heather"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://bohemi.com/#heather",
+      "name": "Heather Ng",
+      "honorificSuffix": "A.J.P.",
+      "jobTitle": "Owner, Jeweler and Designer",
+      "worksFor": {
+        "@id": "https://bohemi.com/#studio"
+      },
+      "knowsAbout": [
+        "Montana sapphires",
+        "salt-and-pepper diamonds",
+        "fantasy cut gemstones",
+        "alternative engagement rings",
+        "custom jewelry design",
+        "gemstone sourcing"
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>
