@@ -16,126 +16,363 @@
 <meta name="twitter:title" content="Salt-and-Pepper Diamond Engagement Rings | Bohemi">
 <meta name="twitter:description" content="One-of-a-kind salt-and-pepper diamond engagement rings, designed around the stone in Boulder and built to last a lifetime. By appointment. Start your design.">
 <meta name="twitter:image" content="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/162_4500.jpg?v=1773461863">
-<link href="https://fonts.googleapis.com/css2?family=Prata&family=Mulish:wght@300;400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --near-black:#131815; --forest:#536649; --sage:#bebdaa;
-    --cream:#f8f0e7; --oxblood:#611b1b; --rule:#e4ded2;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--cream);color:var(--near-black);
-       font-family:'Jost','Filson Pro',system-ui,-apple-system,sans-serif;
-       font-weight:300;font-size:17px;line-height:1.7}
-  .wrap{max-width:860px;margin:0 auto;padding:0 24px}
-  h1,h2,h3{font-family:'Prata',Georgia,serif;font-weight:400;line-height:1.25}
-  h1{font-size:clamp(2.1rem,5.2vw,3.4rem);margin:0 0 .5em}
-  h2{font-size:clamp(1.45rem,3.2vw,2rem);margin:2.6em 0 .6em;color:var(--forest)}
-  h3{font-size:1.18rem;margin:2em 0 .4em}
-  p{margin:0 0 1.15em}
-  a{color:var(--forest);text-underline-offset:3px}
+/* ==========================================================================
+   Bohemi pillar-page design system, 2026-09-24
+   Source of truth: the LIVE Harlow page (bohemi.com/collections/harlow) and
+   her theme stylesheet (cdn/shop/t/4/assets/styles.css), not the brand profile.
+   Her site renders Suranna, not Prata, and uses a script face (Bakol Gedang)
+   the profile does not list.
 
-  /* MOCKUP BANNER, remove on port */
-  .mock{background:var(--near-black);color:var(--cream);font-size:12.5px;
-        letter-spacing:.04em;padding:9px 24px;text-align:center}
-  .mock b{color:var(--sage)}
+   FOR TRACY: every component below is labeled with the theme section it
+   copies. Build each block with that native section and her own settings;
+   this CSS exists only so the mockup looks like the finished page. The
+   "GRAPHIC" components (flow, fork, stat, timeline, icon row) have no native
+   section and go in a Custom Liquid section with this CSS.
+   ========================================================================== */
 
-  /* HERO: full-bleed banner with centered text overlay.
-     Matches her theme's image-with-text-overlay section:
-     200px on mobile, 450px from 768px up, heading 42px then 60px. */
-  .banner{position:relative;width:100%;height:200px;overflow:hidden;
-          display:flex;align-items:center;justify-content:center;text-align:center}
-  .banner img{position:absolute;inset:0;width:100%;height:100%;
-              object-fit:cover;object-position:center}
-  .banner::after{content:'';position:absolute;inset:0;
-                 background:linear-gradient(180deg,rgba(19,24,21,.50) 0%,rgba(19,24,21,.30) 42%,rgba(19,24,21,.58) 100%)}
-  .banner-copy{position:relative;z-index:2;padding:0 24px;color:var(--cream)}
-  .banner-copy h1{color:var(--cream);font-size:28px;margin:0;
-                  text-shadow:0 1px 18px rgba(19,24,21,.45)}
-  .banner-copy .eyebrow{margin:0 0 .7em;color:#e8dcc4;text-shadow:0 1px 10px rgba(19,24,21,.7)}
-  @media(min-width:768px){
-    .banner{height:450px}
-    .banner-copy h1{font-size:42px}
-  }
-  @media(min-width:992px){
-    .banner-copy h1{font-size:60px;max-width:12em;margin:0 auto}
-  }
-  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;
-           color:var(--sage)}
+@font-face{font-family:"Suranna";src:url("https://cdn.shopify.com/s/files/1/0791/5385/6809/files/Suranna-Regular.ttf?v=1698185864");font-display:swap}
+@font-face{font-family:"BNCanteen";src:url("https://cdn.shopify.com/s/files/1/0791/5385/6809/files/BNCanteen-Light.otf?v=1698114517");font-display:swap}
+@font-face{font-family:"FilsonPro";src:url("https://cdn.shopify.com/s/files/1/0791/5385/6809/files/FilsonProBold.otf?v=1698114518");font-weight:700;font-display:swap}
+@font-face{font-family:"BakolGedang";src:url("https://cdn.shopify.com/s/files/1/0791/5385/6809/files/Bakol_Gedang.otf?v=1699455817");font-display:swap}
 
-  .lede{font-size:1.16rem;line-height:1.72}
+:root{
+  --ink:#19261e;        /* her deep green, text and dark sections */
+  --near-black:#131815;
+  --oxblood:#5c1818;    /* buttons, script headings, underlined links */
+  --gold:#f3bb73;       /* headings on dark */
+  --gold-muted:#ceb57b; /* scroll bar, rules */
+  --sage:#66745c;       /* the "Responsible Sustainability" band */
+  --paper:#fbf9f6;      /* page background */
+  --cream:#f6f0e8;      /* alternate panels */
+  --rule:#d5d4d1;
+  --serif:"Suranna",Georgia,serif;
+  --caps:"BNCanteen","Barlow Condensed","Arial Narrow",sans-serif;
+  --label:"FilsonPro","Jost",system-ui,sans-serif;
+  --script:"BakolGedang","Brush Script MT",cursive;
+  --gutter:clamp(16px,5vw,104px);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--near-black);
+     font-family:var(--serif);font-size:18px;line-height:1.75;overflow-x:hidden}
+img{max-width:100%;display:block}
+p{margin:0 0 1.1em}
+a{color:var(--oxblood);text-underline-offset:4px}
 
-  /* STONE CARDS */
-  .stones{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:2em 0 1em}
-  .stone{background:#fff;border:1px solid var(--rule);display:flex;flex-direction:column}
-  .stone img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
-  .stone-body{padding:20px 20px 22px}
-  .stone h3{margin:0 0 .35em;font-size:1.05rem}
-  .stone p{font-size:.94rem;line-height:1.62;margin:0 0 1em;color:#3c4440}
-  .stone a{font-size:.86rem;letter-spacing:.09em;text-transform:uppercase;
-           text-decoration:none;border-bottom:1px solid var(--sage);padding-bottom:2px;
-           margin-top:auto;align-self:flex-start}
+/* Shared type roles, taken from the Harlow page */
+.caps{font-family:var(--caps);font-weight:300;text-transform:uppercase;
+      letter-spacing:.24em;line-height:1.35;color:var(--near-black)}
+h2.caps{font-size:clamp(1.35rem,2.6vw,2.2rem);margin:0 0 .8em}
+.script{font-family:var(--script);font-weight:400;color:var(--oxblood);
+        font-size:clamp(2.3rem,4.4vw,3.6rem);line-height:1.1;margin:0 0 .35em;letter-spacing:0}
+.label-link{font-family:var(--label);font-weight:700;font-size:.8rem;letter-spacing:.14em;
+            text-transform:uppercase;color:var(--oxblood);text-decoration:underline;
+            text-underline-offset:6px;text-decoration-thickness:1px}
+.btn{display:inline-block;background:var(--oxblood);color:#fff;text-decoration:none;
+     font-family:var(--label);font-weight:700;font-size:.82rem;letter-spacing:.22em;
+     text-transform:uppercase;padding:22px 38px}
+.btn:hover,.btn:focus-visible{background:#471212}
+.center{text-align:center}
+.narrow{max-width:760px;margin-left:auto;margin-right:auto}
+section{position:relative}
+.pad{padding:clamp(64px,9vw,128px) var(--gutter)}
 
-  /* TIERS */
-  .tiers{border-top:1px solid var(--rule);margin:1.6em 0}
-  .tier{display:grid;grid-template-columns:190px 1fr auto;gap:18px;
-        padding:20px 0;border-bottom:1px solid var(--rule);align-items:baseline}
-  .tier b{font-family:'Prata',Georgia,serif;font-weight:400;font-size:1.08rem}
-  .tier span{color:#3c4440;font-size:.97rem}
-  .tier .time{color:var(--forest);font-size:.86rem;letter-spacing:.07em;
-              text-transform:uppercase;white-space:nowrap}
+/* MOCKUP NOTE, remove on port */
+.mock{background:var(--near-black);color:#e8dcc4;font:13px/1.5 var(--label);font-weight:400;
+      letter-spacing:.04em;padding:10px 16px;text-align:center}
 
-  /* PULLQUOTE */
-  .pull{border-left:3px solid var(--sage);padding:6px 0 6px 26px;margin:2.2em 0;
-        font-family:'Prata',Georgia,serif;font-size:1.3rem;line-height:1.5;color:var(--forest)}
+/* --------------------------------------------------------------------------
+   THEME SECTION: image_with_text_overlay  (hero, and the closing CTA)
+   -------------------------------------------------------------------------- */
+.hero{min-height:clamp(460px,72vh,780px);display:flex;align-items:center;overflow:hidden;
+      color:#fff;padding:96px var(--gutter)}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,rgba(19,24,21,.62) 0%,rgba(19,24,21,.34) 45%,rgba(19,24,21,.05) 75%)}
+.hero .copy{position:relative;z-index:2;max-width:640px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,6.2vw,5.4rem);
+         line-height:1.08;margin:0 0 .3em;color:#fff}
+.hero .caps{color:#fff;font-size:clamp(.85rem,1.3vw,1.05rem);margin:0}
+.hero.cta{min-height:clamp(480px,64vh,700px)}
+.hero.cta::before{background:linear-gradient(90deg,rgba(0,0,0,.94) 0%,rgba(0,0,0,.82) 38%,rgba(0,0,0,.15) 72%)}
+.hero.cta h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,4.6vw,3.6rem);
+             line-height:1.15;margin:0 0 .5em;color:#fff}
+.hero.cta p{font-size:1.02rem;max-width:520px;color:#f1ece4}
+.hero.cta .btn{margin-top:1.2em}
 
-  /* FAQ */
-  details{border-bottom:1px solid var(--rule)}
-  summary{cursor:pointer;list-style:none;padding:18px 34px 18px 0;position:relative;
-          font-family:'Prata',Georgia,serif;font-size:1.05rem}
-  summary::-webkit-details-marker{display:none}
-  summary::after{content:'+';position:absolute;right:4px;top:15px;
-                 font-size:1.4rem;color:var(--forest);font-family:'Jost',sans-serif}
-  details[open] summary::after{content:'\2212'}
-  .faq-a{padding:0 0 20px;font-size:.99rem;color:#3c4440}
+/* --------------------------------------------------------------------------
+   THEME SECTION: image_with_text  (copy one side, large image + inset other)
+   -------------------------------------------------------------------------- */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
+       gap:clamp(40px,6vw,96px);align-items:center}
+.split.rev{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+.split.rev .media{order:-1}
+.split .copy{max-width:540px;justify-self:end}
+.split.rev .copy{justify-self:start}
+.split .media{position:relative;padding:0 0 12% 18%}
+.split .media .big{width:100%;aspect-ratio:4/5;object-fit:cover}
+.split .media .inset{position:absolute;left:0;bottom:0;width:44%;aspect-ratio:4/5;object-fit:cover;
+                     box-shadow:0 18px 40px rgba(19,24,21,.18)}
+.split.rev .media{padding:0 18% 12% 0}
+.split.rev .media .inset{left:auto;right:0}
 
-  /* CTA */
-  .cta{background:var(--forest);color:var(--cream);text-align:center;
-       padding:64px 24px;margin-top:4em}
-  .cta h2{color:var(--cream);margin-top:0}
-  .cta p{max-width:44ch;margin:0 auto 1.8em;color:#e8e2d6}
-  .btn{display:inline-block;background:var(--cream);color:var(--near-black);
-       text-decoration:none;padding:15px 38px;letter-spacing:.14em;
-       text-transform:uppercase;font-size:.8rem}
-  footer{background:var(--near-black);color:var(--sage);text-align:center;
-         padding:26px;font-size:12px;letter-spacing:.06em}
+/* --------------------------------------------------------------------------
+   THEME SECTION: image_with_text, 50/50 full bleed ("Her Story")
+   -------------------------------------------------------------------------- */
+.half{display:grid;grid-template-columns:1fr 1fr;background:var(--paper)}
+.half .img{position:relative;min-height:560px}
+.half .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.half .copy{padding:clamp(56px,8vw,120px) clamp(24px,7vw,120px);align-self:center;max-width:720px}
+.half.rev .img{order:2}
 
-  @media(max-width:820px){
-    .stones{grid-template-columns:1fr}
-    .stone{display:grid;grid-template-columns:130px 1fr}
-    .stone img{aspect-ratio:1/1;height:100%}
-    .tier{grid-template-columns:1fr;gap:4px}
-    .tier .time{justify-self:start}
-  }
+/* --------------------------------------------------------------------------
+   THEME SECTION: text_columns_with_images, sage band ("Responsible Sustainability")
+   -------------------------------------------------------------------------- */
+.band{background:var(--sage);color:#fff}
+.band .script{color:var(--cream)}
+.band h2.caps{color:#fff}
+.band p{color:#f4f1ea}
+.band a{color:#fff;text-decoration-color:rgba(255,255,255,.6)}
+.icons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px 32px;
+       margin:56px auto 0;max-width:1200px;list-style:none;padding:0}
+.icons li{text-align:center}
+.icons svg{width:74px;height:74px;stroke:#fff;fill:none;stroke-width:1.3;margin:0 auto 26px;display:block}
+.icons b{display:block;font-family:var(--label);font-weight:700;font-size:.8rem;letter-spacing:.12em;
+         text-transform:uppercase;line-height:1.9;text-decoration:underline;text-underline-offset:6px}
+.icons span{display:block;font-size:.98rem;line-height:1.55;margin-top:.7em;color:#eef0ea}
 
-  /* BREADCRUMB */
-  .crumb{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:#6f6a5f;
-         padding:18px 0 0}
-  .crumb a{color:#6f6a5f;text-decoration:none;border-bottom:1px solid var(--rule)}
-  .crumb span{color:var(--near-black)}
+/* --------------------------------------------------------------------------
+   THEME SECTION: text_columns_with_images over image, dark ("Jewelry with Drama")
+   -------------------------------------------------------------------------- */
+.dark{background:var(--ink);color:var(--paper);overflow:hidden}
+.dark>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28;filter:grayscale(.2)}
+.dark .inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;
+             gap:clamp(36px,6vw,96px);max-width:1240px;margin:0 auto}
+.dark h2{font-family:var(--serif);font-weight:400;color:var(--gold);
+         font-size:clamp(2rem,3.8vw,3rem);line-height:1.15;margin:0 0 .8em}
+.dark h3{font-family:var(--serif);font-weight:400;color:var(--gold);font-size:1.12rem;margin:1.6em 0 .7em}
+.dark p{color:#efeae1}
 
-  /* EVIDENCE GALLERY */
-  .gal{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:1.8em 0 .6em}
-  .gal figure{margin:0}
-  .gal img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;
-           background:#fff;border:1px solid var(--rule)}
-  .gal figcaption{font-size:.83rem;line-height:1.45;color:#3c4440;margin-top:8px}
-  .gal figcaption b{display:block;font-family:'Prata',Georgia,serif;font-weight:400;
-                    font-size:.92rem;color:var(--near-black);margin-bottom:2px}
-  .galnote{font-size:.9rem;color:#6f6a5f;font-style:italic;margin:.2em 0 2em}
-  @media(max-width:720px){ .gal{grid-template-columns:repeat(2,1fr)} }
+/* --------------------------------------------------------------------------
+   THEME SECTION: text_columns_with_images, three cards ("Browse Art Deco Rings")
+   -------------------------------------------------------------------------- */
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1400px;margin:0 auto}
+.cards a{text-decoration:none;color:inherit;display:block}
+.cards a.label-link,.cards .label-link{color:var(--oxblood);display:inline-block}
+.cards img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.cards .caps{display:block;font-size:.95rem;letter-spacing:.06em;margin:28px 0 10px}
+.cards .t{display:block;font-size:1.3rem;line-height:1.35;color:var(--near-black)}
+.cards .d{display:block;font-size:1rem;line-height:1.6;color:#4a4f4b;margin-top:.5em}
+.cards.stones .body{padding:0 4px}
+.cards.stones p{font-size:1rem;line-height:1.65;color:#3e443f;margin:.6em 0 1.3em}
+
+/* --------------------------------------------------------------------------
+   THEME SECTION: featured_collection ("Shop Harlow Collection")
+   -------------------------------------------------------------------------- */
+.carousel{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 48px) / 3);gap:24px;
+          overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:40px;
+          scrollbar-color:var(--gold-muted) #f4e4c7;scrollbar-width:thin}
+.carousel::-webkit-scrollbar{height:6px}
+.carousel::-webkit-scrollbar-thumb{background:var(--gold-muted);border-radius:6px}
+.carousel::-webkit-scrollbar-track{background:#f4e4c7;border-radius:6px;margin:0 20%}
+.carousel a{scroll-snap-align:start;text-decoration:none;color:var(--near-black)}
+.carousel a:focus-visible{outline:2px solid var(--oxblood);outline-offset:4px}
+.carousel img{width:100%;aspect-ratio:1/1;object-fit:cover;background:#fff}
+.carousel .t{display:block;font-size:1.1rem;line-height:1.4;margin:22px 0 10px}
+.carousel .p{display:block;font-family:var(--label);font-weight:700;font-size:.95rem}
+.carousel .go{display:block;margin-top:.5em}
+.carousel+.center{margin-top:20px}
+
+/* --------------------------------------------------------------------------
+   THEME SECTION: accordions ("FAQs"), framed with the vertical rules
+   -------------------------------------------------------------------------- */
+.faqbox{max-width:880px;margin:0 auto;border:1px solid #c9c7c2;
+        padding:clamp(48px,6vw,72px) clamp(20px,6vw,96px);position:relative}
+.faqbox::before,.faqbox::after{content:"";position:absolute;left:50%;width:1px;height:80px;background:#b9b6b0}
+.faqbox::before{top:-34px}.faqbox::after{bottom:-34px}
+.faqbox h2{text-align:center;font-size:clamp(1.6rem,2.8vw,2.1rem);letter-spacing:.3em;margin-bottom:1.2em}
+.faqbox details{border-bottom:1px solid var(--rule)}
+.faqbox details:nth-of-type(even){border-bottom-color:#e8d6b4}
+.faqbox summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;
+                font-size:1.18rem;line-height:1.45;padding:22px 0}
+.faqbox summary::-webkit-details-marker{display:none}
+.faqbox summary::after{content:"+";font-family:var(--label);font-size:1.5rem;line-height:1;flex:none}
+.faqbox details[open] summary::after{content:"\2212"}
+.faqbox .faq-a{padding:0 0 24px;font-size:1.02rem;line-height:1.75;color:#333a35}
+
+/* --------------------------------------------------------------------------
+   GRAPHIC: stone-first flow  (Custom Liquid)
+   Turns "the stone comes first, the design follows" into a three-step path.
+   -------------------------------------------------------------------------- */
+.flow{list-style:none;padding:0;margin:56px auto 0;max-width:1100px;
+      display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;counter-reset:f}
+.flow li{position:relative;text-align:center;padding:0 8px}
+.flow li::before{counter-increment:f;content:counter(f);display:flex;align-items:center;justify-content:center;
+     width:64px;height:64px;margin:0 auto 22px;border-radius:50%;border:1px solid rgba(255,255,255,.75);
+     font-family:var(--serif);font-size:1.6rem;color:#fff;background:var(--sage);position:relative;z-index:1}
+.flow li:not(:last-child)::after{content:"";position:absolute;top:32px;left:calc(50% + 40px);
+     width:calc(100% - 48px);border-top:1px dashed rgba(255,255,255,.6)}
+.flow b{display:block;font-family:var(--caps);font-weight:300;letter-spacing:.24em;text-transform:uppercase;
+        font-size:1.15rem;color:#fff;margin-bottom:.5em}
+.flow span{display:block;font-size:1rem;line-height:1.6;color:#eef0ea}
+/* the fork under the flow: two ways the design follows the stone */
+.fork{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:980px;margin:64px auto 0;
+      border:1px solid rgba(255,255,255,.5)}
+.fork>div{padding:32px clamp(20px,3.5vw,44px)}
+.fork>div+div{border-left:1px solid rgba(255,255,255,.5)}
+.fork .caps{color:#fff;font-size:.95rem;display:block;margin-bottom:.6em}
+.fork p{margin:0;font-size:1.02rem;line-height:1.6}
+
+/* --------------------------------------------------------------------------
+   GRAPHIC: two-column contrast  (Custom Liquid)
+   -------------------------------------------------------------------------- */
+.contrast{display:grid;grid-template-columns:1fr 1fr;margin:36px 0 8px;border-top:1px solid var(--oxblood)}
+.contrast>div{padding:26px 24px 8px 0}
+.contrast>div+div{padding-left:24px;border-left:1px solid var(--rule)}
+.contrast .caps{font-size:.9rem;letter-spacing:.18em;color:var(--oxblood);display:block;margin-bottom:.6em}
+.contrast p{font-size:1.02rem;line-height:1.6;margin:0 0 .6em}
+
+/* --------------------------------------------------------------------------
+   GRAPHIC: single measured standard  (Custom Liquid)
+   -------------------------------------------------------------------------- */
+.stat{border:1px solid rgba(243,187,115,.55);padding:34px 32px;margin:8px 0 0;text-align:center}
+.stat .n{display:block;font-family:var(--serif);color:var(--gold);font-size:clamp(3.6rem,7vw,5.6rem);line-height:1}
+.stat .u{display:block;font-family:var(--caps);letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-size:1rem;margin:.6em 0 .9em}
+.stat p{margin:0;font-size:1rem;color:#efeae1}
+
+/* --------------------------------------------------------------------------
+   GRAPHIC: three ways in, with a to-scale timeline  (Custom Liquid)
+   -------------------------------------------------------------------------- */
+.ways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1240px;margin:48px auto 0}
+.ways>div{background:#fff;border:1px solid #e6dfd3;padding:36px 30px 32px}
+.ways h3{font-family:var(--caps);font-weight:300;letter-spacing:.2em;text-transform:uppercase;font-size:1.2rem;margin:0 0 .8em}
+.ways .price{font-family:var(--serif);font-size:1.5rem;line-height:1.25;color:var(--oxblood);display:block;margin-bottom:.5em}
+.ways p{font-size:1rem;line-height:1.6;color:#3e443f;margin:0 0 1.4em}
+.ways .bar{height:6px;background:#f1e7d6;position:relative;margin-bottom:10px}
+.ways .bar i{position:absolute;top:0;bottom:0;background:var(--gold-muted)}
+.ways .wk{font-family:var(--label);font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
+.ways .scale{display:flex;justify-content:space-between;font-family:var(--label);font-size:.66rem;color:#8a8a84;margin-top:4px}
+.steps{list-style:none;padding:0;margin:40px auto 0;max-width:1100px;display:grid;
+       grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--rule)}
+.steps li{padding:26px 22px 0 0;position:relative}
+.steps li::before{content:"";position:absolute;top:-5px;left:0;width:9px;height:9px;border-radius:50%;background:var(--oxblood)}
+.steps b{display:block;font-family:var(--caps);font-weight:300;letter-spacing:.2em;text-transform:uppercase;font-size:1rem;margin-bottom:.4em}
+.steps span{display:block;font-size:.98rem;line-height:1.55;color:#3e443f}
+
+/* Evidence table ("What we say, and what we will not") */
+.grounds{width:100%;border-collapse:collapse;font-size:1rem;line-height:1.55;background:#fff}
+.grounds th{font-family:var(--label);font-weight:700;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+            text-align:left;padding:16px 18px;background:var(--ink);color:var(--gold)}
+.grounds td{padding:16px 18px;border-bottom:1px solid #ebe5da;vertical-align:top}
+.grounds td:first-child{font-family:var(--caps);letter-spacing:.12em;text-transform:uppercase;font-size:.95rem;width:20%}
+.grounds td:last-child{color:var(--oxblood)}
+.tablewrap{overflow-x:auto;max-width:1100px;margin:0 auto}
+.note{font-style:italic;color:#6b6a64;font-size:.98rem;text-align:center;margin-top:1.2em}
+
+/* Pull quote, testimonial treatment */
+.quote{max-width:820px;margin:0 auto;text-align:center}
+.quote blockquote{margin:0;font-size:clamp(1.5rem,2.8vw,2.2rem);line-height:1.45}
+.quote .caps{font-size:.95rem;margin-top:1.4em;display:block}
+
+.byline{max-width:880px;margin:0 auto;text-align:center;font-size:.98rem;color:#55584f;
+        border-top:1px solid var(--rule);padding-top:28px}
+.byline strong{font-weight:400;color:var(--near-black)}
 
 
-    /* ===== Bohemi realistic site chrome (header + footer), .bsite- scoped ===== */
+/* Breadcrumb bar under a spoke hero */
+.crumb{font-family:var(--caps);letter-spacing:.18em;text-transform:uppercase;font-size:.82rem;
+       padding:18px var(--gutter);border-bottom:1px solid var(--rule);margin:0;color:#6b6a64}
+.crumb a{color:var(--near-black);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+
+/* Specimen gallery: four real stones from the catalog (text_columns_with_images, 4 up) */
+.cards.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.cards.four figure{margin:0}
+.cards.four img{background:#fff}
+.cards.four figcaption{margin-top:18px}
+.cards.four figcaption b{display:block;font-family:var(--caps);font-weight:300;letter-spacing:.14em;
+                         text-transform:uppercase;font-size:.98rem;margin-bottom:.3em}
+.cards.four figcaption span{display:block;font-size:1rem;line-height:1.55;color:#4a4f4b}
+
+/* GRAPHIC: spectrum under the specimens (Custom Liquid) */
+.spectrum{max-width:1400px;margin:28px auto 0}
+.spectrum .bar{height:4px;background:linear-gradient(90deg,#2b2b2b 0%,#8d8d8d 45%,#e7e2da 100%)}
+.spectrum .ends{display:flex;justify-content:space-between;margin-top:10px;font-family:var(--caps);
+                letter-spacing:.16em;text-transform:uppercase;font-size:.82rem;color:#55584f}
+
+/* GRAPHIC: ground palette cards, the ground table drawn as color (Custom Liquid) */
+.palette{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;max-width:1300px;margin:48px auto 0}
+.palette>div{background:#fff;border:1px solid #e6dfd3;padding:30px 26px 26px}
+.palette .sw{display:flex;gap:8px;margin-bottom:22px}
+.palette .sw i{width:30px;height:30px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.palette h4{font-family:var(--caps);font-weight:300;letter-spacing:.2em;text-transform:uppercase;font-size:1.1rem;margin:0 0 .5em}
+.palette .gives{font-size:1.1rem;line-height:1.4;color:var(--oxblood);margin:0 0 .8em}
+.palette p{font-size:.98rem;line-height:1.6;color:#3e443f;margin:0}
+
+/* GRAPHIC: hardness ladder in the dark section (Custom Liquid) */
+.ladder{list-style:none;padding:0;margin:26px 0 0;border-top:1px solid rgba(243,187,115,.35)}
+.ladder li{display:flex;align-items:baseline;gap:18px;padding:14px 0;border-bottom:1px solid rgba(243,187,115,.2);color:#cfc8bb}
+.ladder li b{font-family:var(--serif);font-weight:400;color:#8d8577;font-size:1.3rem;width:1.6em}
+.ladder li span{font-family:var(--caps);letter-spacing:.2em;text-transform:uppercase;font-size:1rem}
+.ladder li.on{color:var(--gold)}
+.ladder li.on b{color:var(--gold)}
+.dark .contrast{border-top-color:rgba(243,187,115,.55)}
+.dark .contrast>div+div{border-left-color:rgba(243,187,115,.25)}
+.dark .contrast .caps{color:var(--gold)}
+.dark .contrast p{color:#efeae1}
+
+@media(max-width:860px){
+  .cards.four,.palette{grid-template-columns:1fr 1fr}
+  .crumb{font-size:.72rem}
+}
+@media(max-width:480px){.palette{grid-template-columns:1fr}}
+
+
+/* Loose-stone photo frame: the stone is zoomed per photo (measured at build time) */
+.ph{display:block;aspect-ratio:1/1;overflow:hidden;background:#fff}
+.ph img{width:100%;height:100%;object-fit:contain;transform-origin:center}
+.carousel .ph img,.cards .ph img{aspect-ratio:auto}
+.split .media .inset.ph{padding:0}
+
+/* ==========================================================================
+   Phone: every two-up section stacks, images first, 16px gutters.
+   ========================================================================== */
+@media(max-width:860px){
+  .split,.split.rev,.half,.dark .inner{grid-template-columns:1fr}
+  .split .media,.split.rev .media{order:-1;padding:0 0 14% 14%}
+  .split.rev .media{padding:0 14% 14% 0}
+  .split .copy,.split.rev .copy{justify-self:start;max-width:none}
+  .half .img{min-height:0;aspect-ratio:1/1}
+  .half.rev .img{order:0}
+  .icons{grid-template-columns:1fr 1fr}
+  .flow{grid-template-columns:1fr;gap:36px}
+  .flow li:not(:last-child)::after{display:none}
+  .fork,.contrast{grid-template-columns:1fr}
+  .fork>div+div{border-left:0;border-top:1px solid rgba(255,255,255,.5)}
+  .contrast>div+div{border-left:0;padding-left:0;border-top:1px solid var(--rule)}
+  .cards,.ways{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr;row-gap:28px}
+  .carousel{grid-auto-columns:78%}
+  .hero::before{background:linear-gradient(180deg,rgba(19,24,21,.25) 0%,rgba(19,24,21,.7) 100%)}
+  .hero{align-items:flex-end;padding-bottom:56px}
+  .hero.cta::before{background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.9) 70%)}
+}
+@media(max-width:480px){.icons,.steps{grid-template-columns:1fr}}
+/* Evidence table on a phone: each row becomes a card, column names shown inline */
+@media(max-width:640px){
+  .grounds,.grounds tbody,.grounds tr,.grounds td{display:block;width:auto}
+  .grounds tr:first-child{display:none}
+  .grounds tr{border-bottom:1px solid #e0d8ca;padding:18px 18px 8px}
+  .grounds td{border:0;padding:0 0 12px}
+  .grounds td:first-child{width:auto;font-size:1.05rem;color:var(--near-black);padding-bottom:10px}
+  .grounds td[data-label]::before{content:attr(data-label);display:block;font-family:var(--label);font-weight:700;
+     font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:#8a8a84;margin-bottom:2px}
+}
+
+</style>
+<style>/* ===== Bohemi realistic site chrome (header + footer), .bsite- scoped ===== */
     .bsite-head{background:#19261e;padding:20px 28px 0;font-family:'Mulish',-apple-system,sans-serif;}
     .bsite-head .top{display:flex;align-items:center;justify-content:space-between;max-width:1280px;margin:0 auto;gap:24px;}
     .bsite-head .ic{display:flex;gap:20px;align-items:center;flex:1;}
@@ -169,68 +406,10 @@
       .bsite-foot .grid{grid-template-columns:1fr 1fr;gap:30px 22px;}
       .bsite-foot .mid{grid-column:1 / -1;order:-1;margin-bottom:8px;}
       .bsite-foot .legal{flex-direction:column;}
-    }
-
-
-  /* REAL COMMISSIONS */
-  .comm{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:1.4em 0 .5em}
-  .comm a{display:block;text-decoration:none;color:inherit;background:#fff;
-          border:1px solid var(--rule);padding:18px 18px 20px;transition:border-color .15s}
-  .comm a:hover{border-color:var(--forest)}
-  .comm .who{font-family:'Prata',Georgia,serif;font-size:1.02rem;color:var(--forest);
-             display:block;margin-bottom:.35em}
-  .comm .what{font-size:.92rem;line-height:1.55;color:#3c4440;display:block}
-  .comm .go{font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;
-            color:#6f6a5f;display:block;margin-top:.9em}
-  @media(max-width:760px){ .comm{grid-template-columns:1fr} }
-
-
-  .comm a{padding:0;overflow:hidden;display:flex;flex-direction:column}
-  .comm a img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#f0e7d8}
-  .comm .body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
-  .comm .go{margin-top:auto;padding-top:.8em}
-
-
-  /* COMMISSION STRIP: scroll-snap, no JavaScript, every card a real link in the DOM */
-  .strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(232px,268px);
-         gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;
-         padding:4px 4px 18px;margin:1.4em -4px .4em;
-         scrollbar-width:thin;scrollbar-color:var(--sage) transparent}
-  .strip::-webkit-scrollbar{height:8px}
-  .strip::-webkit-scrollbar-thumb{background:var(--sage);border-radius:4px}
-  .strip::-webkit-scrollbar-track{background:#efe6d9;border-radius:4px}
-  .strip a{scroll-snap-align:start;display:flex;flex-direction:column;
-           background:#fff;border:1px solid var(--rule);text-decoration:none;color:inherit;
-           transition:border-color .15s}
-  .strip a:hover,.strip a:focus-visible{border-color:var(--forest);outline:none}
-  .strip a:focus-visible{box-shadow:0 0 0 2px var(--forest)}
-  .strip img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#f0e7d8}
-  .strip .body{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1}
-  .strip .who{font-family:'Prata',Georgia,serif;font-size:.98rem;color:var(--forest);
-              margin-bottom:.3em;line-height:1.3}
-  .strip .go{font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;
-             color:#6f6a5f;margin-top:auto;padding-top:.8em}
-  .striphint{font-size:.82rem;color:#6f6a5f;font-style:italic;margin:.1em 0 2em}
-
-
-  .byline{font-size:.88rem;color:#6f6a5f;border-top:1px solid var(--rule);
-          padding-top:16px;margin:2.6em 0 0;line-height:1.6}
-  .byline strong{color:var(--forest);font-weight:500}
-  .grounds{width:100%;border-collapse:collapse;font-size:14.5px;margin:1.2em 0 .4em}
-  .grounds th{font-family:'Prata',Georgia,serif;font-weight:400;font-size:15px;
-              background:#f0e7d8;color:#19261e;padding:11px 14px;text-align:left;
-              border-bottom:2px solid var(--forest)}
-  .grounds td{padding:11px 14px;border-bottom:1px solid var(--rule);vertical-align:top;
-              line-height:1.55;color:#3c4440}
-  .grounds td:first-child{font-weight:500;color:var(--forest);width:22%;white-space:nowrap}
-  @media(max-width:600px){ .grounds{font-size:13.5px} 
-  .grounds.prov td:first-child{width:22%}
-</style>
+    }</style>
 </head>
 <body>
-
-<div class="mock">MOCKUP for review &middot; <b>Bohemi</b> &middot; Salt-and-Pepper Diamonds &middot; copy is Heather&rsquo;s approved version &middot; this bar is not part of the page</div>
-
+<div class="mock">Design mockup for Tracy. Each block is labeled with the theme section it maps to. Not published.</div>
 <header class="bsite-head">
   <div class="top">
     <div class="ic l">
@@ -249,78 +428,59 @@
     <a href="#">Engagement Rings</a><a href="#">Jewelry</a><a href="#">Gifts</a><a href="#">Ring Education</a><a href="#">Permanent Jewelry</a><a class="on" href="#">Appointments</a><a href="#">Stone Catalog</a><a href="#">Custom</a>
   </nav>
 </header>
+<main>
 
+<!-- THEME SECTION: image_with_text_overlay (hero) -->
+<section class="hero"><img src="https://bohemi.com/cdn/shop/articles/Tjaden_Champagne_S_P_eng_ring_2aef33b2-554e-4a8d-a7dc-c603cff36e4a.jpg?width=2400" alt="An emerald cut champagne salt-and-pepper diamond engagement ring, from a Bohemi commission" style="object-position:center 50%"><div class="copy"><p class="caps">No two alike</p><h1>Salt-and-Pepper Diamond Engagement Rings</h1></div></section>
 
-<section class="banner">
-  <img src="https://bohemi.com/cdn/shop/files/All_Engagement_Rings_1728x.png" alt="Bohemi alternative engagement rings">
-  <div class="banner-copy">
-    <p class="eyebrow">No two alike</p>
-    <h1>Salt-and-Pepper Diamond Engagement Rings</h1>
-  </div>
-</section>
-
-<div class="wrap">
+<!-- THEME: breadcrumb (theme snippet, or rich_text) -->
 <p class="crumb"><a href="/">Home</a> &rsaquo; <a href="/pages/alternative-engagement-rings">Alternative Engagement Rings</a> &rsaquo; <span>Salt-and-Pepper Diamonds</span></p>
 
-<p class="lede" style="margin-top:2.2em">A salt-and-pepper diamond is a real diamond with its story written under the surface: flecks of black, white, red, orange and brown scattered through the stone like a night sky, no two alike. A traditional jeweler would call those inclusions flaws. We call them characteristics, mother nature's fingerprint, and they are exactly the point. If you want a diamond that could only ever be yours, this is where alternative engagement rings begin.</p>
+<!-- THEME SECTION: image_with_text (copy left, image + inset right) -->
+<section class="pad split"><div class="copy"><p class="caps" style="font-size:1.25rem">Mother nature's fingerprint</p><p>A salt-and-pepper diamond is a real diamond with its story written under the surface: flecks of black, white, red, orange and brown scattered through the stone like a night sky, no two alike. A traditional jeweler would call those inclusions flaws. We call them characteristics, mother nature's fingerprint, and they are exactly the point. If you want a diamond that could only ever be yours, this is where alternative engagement rings begin.</p><p>At Bohemi, every salt-and-pepper diamond is chosen with you, designed to suit it, then built to be worn for a lifetime. This is one of the stones we know deeply, and because no two are ever alike, the stone is what makes a ring feel one of a kind, even when the design is not a bespoke one.</p></div><div class="media"><img class="big" src="https://cdn.shopify.com/s/files/1/0791/5385/6809/collections/nyx_wedding_set.jpg?width=1400" alt="A Nyx wedding set by Bohemi" loading="lazy"><span class="inset ph"><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/129_880b.jpg?v=1773522914&width=800" alt="A loose salt and pepper diamond hexagon, 0.49 carat" loading="lazy" style="transform:scale(2.42)"></span></div></section>
 
-<p>At Bohemi, every salt-and-pepper diamond is chosen with you, designed to suit it, then built to be worn for a lifetime. This is one of the stones we know deeply, and because no two are ever alike, the stone is what makes a ring feel one of a kind, even when the design is not a bespoke one.</p>
+<!-- THEME SECTION: text_columns_with_images (four specimens)  +  GRAPHIC spectrum (Custom Liquid) -->
+<section class="pad"><div class="center narrow"><p class="script">No two alike</p><h2 class="caps">Are the inclusions in a salt-and-pepper diamond flaws?</h2></div><div class="cards four" style="margin-top:40px"><figure><span class="ph"><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/129_880b.jpg?v=1773522914" alt="Salt and pepper diamond hexagon, 0.49 carat, with dense scattered inclusions" loading="lazy" style="transform:scale(2.42)"></span><figcaption><b>Hexagon, 0.49ct</b><span>Dense and smoky throughout.</span></figcaption></figure><figure><span class="ph"><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/162_4500.jpg?v=1773461863" alt="Salt and pepper diamond emerald cut, 2.35 carat, with graphic linear inclusions" loading="lazy" style="transform:scale(1.0)"></span><figcaption><b>Emerald cut, 2.35ct</b><span>Crisp and graphic.</span></figcaption></figure><figure><span class="ph"><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/143_2750.jpg?v=1773455815" alt="Peachy salt and pepper diamond pear, 1.82 carat, with warm body color" loading="lazy" style="transform:scale(1.19)"></span><figcaption><b>Peachy pear, 1.82ct</b><span>Warm body color, not only black and white.</span></figcaption></figure><figure><span class="ph"><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/127_4170.jpg?v=1773455757" alt="Fancy white salt and pepper diamond pear, 1.98 carat, mostly clear with few inclusions" loading="lazy" style="transform:scale(1.05)"></span><figcaption><b>Fancy white pear, 1.98ct</b><span>Barely a fleck, at the other end.</span></figcaption></figure></div><div class="spectrum" aria-hidden="true"><div class="bar"></div><div class="ends"><span>Dense and smoky</span><span>Barely a fleck</span></div></div><p class="note">Four stones, one category. This is what "no two alike" looks like when you put them side by side.</p><div class="narrow" style="margin-top:48px"><p>A white diamond is graded to be as clear and colorless as possible, which means one looks much like the next. A salt-and-pepper diamond is the opposite. Its inclusions are what make it singular, so choosing one is less like picking a grade off a list and more like finding the one stone whose pattern speaks to you. Some are soft and smoky, some are crisp and graphic, some hold a single dramatic mark. There is no better or worse, only the one that is yours.</p></div></section>
 
-<h2>Are the inclusions in a salt-and-pepper diamond flaws?</h2>
-<div class="gal">
-<figure><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/129_880b.jpg?v=1773522914" alt="Salt and pepper diamond hexagon, 0.49 carat, with dense scattered inclusions"><figcaption><b>Hexagon, 0.49ct</b>Dense and smoky throughout.</figcaption></figure>
-<figure><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/162_4500.jpg?v=1773461863" alt="Salt and pepper diamond emerald cut, 2.35 carat, with graphic linear inclusions"><figcaption><b>Emerald cut, 2.35ct</b>Crisp and graphic.</figcaption></figure>
-<figure><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/143_2750.jpg?v=1773455815" alt="Peachy salt and pepper diamond pear, 1.82 carat, with warm body color"><figcaption><b>Peachy pear, 1.82ct</b>Warm body color, not only black and white.</figcaption></figure>
-<figure><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/127_4170.jpg?v=1773455757" alt="Fancy white salt and pepper diamond pear, 1.98 carat, mostly clear with few inclusions"><figcaption><b>Fancy white pear, 1.98ct</b>Barely a fleck, at the other end.</figcaption></figure>
-</div>
-<p class="galnote">Four stones, one category. This is what "no two alike" looks like when you put them side by side.</p>
-<p>A white diamond is graded to be as clear and colorless as possible, which means one looks much like the next. A salt-and-pepper diamond is the opposite. Its inclusions are what make it singular, so choosing one is less like picking a grade off a list and more like finding the one stone whose pattern speaks to you. Some are soft and smoky, some are crisp and graphic, some hold a single dramatic mark. There is no better or worse, only the one that is yours.</p>
+<!-- THEME SECTION: featured_collection style, blog articles (commission stories) -->
+<section class="pad"><div class="center narrow"><h2 class="caps">Salt-and-pepper diamonds we have actually set</h2><p>Real commissions, written up at the time. Look at how differently each stone reads, and how differently each one is set.</p></div><div class="carousel" style="margin-top:40px"><a href="https://bohemi.com/blogs/customs/engagement-rings-eric-rainy-arcadia-salt-pepper-pear"><img src="https://bohemi.com/cdn/shop/articles/eric_s_p_arcadia_eng_ring_1200x1200.jpg?v=1774479911" alt="Arcadia Pear Salt &amp; Pepper Diamond Engagement Ring in Yellow Gold" loading="lazy"><span class="t">Arcadia Pear Salt &amp; Pepper Diamond Engagement Ring in Yellow Gold</span><span class="label-link go">Read the commission</span></a><a href="https://bohemi.com/blogs/customs/engagement-rings-george-seana-heirloom-witchy-salt-pepper"><img src="https://bohemi.com/cdn/shop/articles/George_heirloom_witchy_engagement_ring_c3967b24-47f7-495e-a1f1-d93ab98098c2_1200x1200.jpg?v=1778703859" alt="Heirloom Diamond Witchy Engagement Ring in 10k White Gold" loading="lazy"><span class="t">Heirloom Diamond Witchy Engagement Ring in 10k White Gold</span><span class="label-link go">Read the commission</span></a><a href="https://bohemi.com/blogs/customs/oval-brilliant-salt-pepper-18k-engagement-ring"><img src="https://bohemi.com/cdn/shop/articles/sarah_garcia_18k_oval_s_p14_75d1ed45-9170-454a-931b-8d37577c08a7_1200x1200.jpg?v=1778701452" alt="Oval Brilliant Salt &amp; Pepper 18k Engagement Ring" loading="lazy"><span class="t">Oval Brilliant Salt &amp; Pepper 18k Engagement Ring</span><span class="label-link go">Read the commission</span></a><a href="https://bohemi.com/blogs/customs/salt-pepper-gothic-engagement-ring"><img src="https://bohemi.com/cdn/shop/articles/Emily_gothic_diamond_eng_ring4_480db6e9-8c32-4c96-9221-a753dc18d7c1_1200x1200.jpg?v=1778279421" alt="Salt &amp; Pepper Diamond Gothic Engagement Ring" loading="lazy"><span class="t">Salt &amp; Pepper Diamond Gothic Engagement Ring</span><span class="label-link go">Read the commission</span></a><a href="https://bohemi.com/blogs/customs/emerald-cut-champagne-salt-pepper-diamond-engagement-ring"><img src="https://bohemi.com/cdn/shop/articles/Alana_eng_ring5_f5ad4682-9bed-4e73-afd5-59c338dcad6e_1200x1200.jpg?v=1779836468" alt="Champagne Salt &amp; Pepper Diamond Engagement Ring" loading="lazy"><span class="t">Champagne Salt &amp; Pepper Diamond Engagement Ring</span><span class="label-link go">Read the commission</span></a><a href="https://bohemi.com/blogs/customs/ombre-rosecut-salt-pepper-wedding-band"><img src="https://bohemi.com/cdn/shop/articles/sarah_garcia_wedding_band5_60b9d14e-1b0f-42cb-b39d-06b68b21ee9a_1200x1200.jpg?v=1778702636" alt="Ombré Rosecut Salt &amp; Pepper Wedding Band" loading="lazy"><span class="t">Ombré Rosecut Salt &amp; Pepper Wedding Band</span><span class="label-link go">Read the commission</span></a><a href="https://bohemi.com/blogs/customs/montana-sapphire-w-s-p-diamond-platinum-engagement-ring"><img src="https://bohemi.com/cdn/shop/articles/Meghan_Sapp_S_P_Plat_eng_ring_fccc7f37-2cda-4801-ad97-fc7b6aacdc42_1200x1200.jpg?v=1779231012" alt="Hexagon Sapphire with Salt &amp; Pepper Diamond Platinum Engagement Ring" loading="lazy"><span class="t">Hexagon Sapphire with Salt &amp; Pepper Diamond Platinum Engagement Ring</span><span class="label-link go">Read the commission</span></a><a href="https://bohemi.com/blogs/customs/custom-nyx-witchy-engagement-ring-story"><img src="https://bohemi.com/cdn/shop/articles/Babs_Hex_ring8_e8c4c82f-a422-4f72-8f1e-8d12b6e5f59c_1200x1200.jpg?v=1779231058" alt="Custom Nyx Ring Story" loading="lazy"><span class="t">Custom Nyx Ring Story</span><span class="label-link go">Read the commission</span></a></div><p class="note">Scroll for more. Every one of these is a ring Heather made, written up when it was finished.</p><div class="quote" style="margin-top:72px"><blockquote>There is no better or worse, only the one that is yours.</blockquote></div></section>
 
+<!-- THEME SECTION: text_columns_with_images over image, dark  +  GRAPHIC stat and contrast (Custom Liquid) -->
+<section class="pad dark"><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/collections/chrysos_wedding_set2.jpg?width=2000" alt="" aria-hidden="true"><div class="inner"><div><h2>Are salt-and-pepper diamonds durable enough for everyday wear?</h2><p>A salt-and-pepper diamond is a real diamond, which means it sits at a 10 on the Mohs scale, the hardest natural material there is, so it will not scratch in everyday wear. Toughness is the honest nuance: a heavily included stone can be more prone to chipping where an inclusion reaches the surface, and this is exactly where a gem expert's eye earns its place. We hand-select each stone for soundness and favor a protective setting, a bezel or a low, secure profile, so the stone is guarded from daily knocks. One care note: skip the ultrasonic cleaner and harsh chemicals, and this is a ring you wear for decades. Built to last a lifetime is the standard here, same as every Bohemi ring.</p></div><div><div class="stat"><span class="n">10</span><span class="u">On the Mohs scale</span><p>The hardest natural material there is.</p></div><div class="contrast"><div><span class="caps">Hardness</span><p>It will not scratch in everyday wear.</p></div><div><span class="caps">Toughness</span><p>Where an inclusion reaches the surface it can chip, so we select for soundness and set it protectively.</p></div></div></div></div></section>
 
-<h2>Salt-and-pepper diamonds we have actually set</h2>
-<p>Real commissions, written up at the time. Look at how differently each stone reads, and how differently each one is set.</p>
-<div class="strip"><a href="https://bohemi.com/blogs/customs/engagement-rings-eric-rainy-arcadia-salt-pepper-pear"><img src="https://bohemi.com/cdn/shop/articles/eric_s_p_arcadia_eng_ring_1200x1200.jpg?v=1774479911" alt="Arcadia Pear Salt &amp; Pepper Diamond Engagement Ring in Yellow Gold" loading="lazy"><span class="body"><span class="who">Arcadia Pear Salt &amp; Pepper Diamond Engagement Ring in Yellow Gold</span><span class="go">Read the commission</span></span></a><a href="https://bohemi.com/blogs/customs/engagement-rings-george-seana-heirloom-witchy-salt-pepper"><img src="https://bohemi.com/cdn/shop/articles/George_heirloom_witchy_engagement_ring_c3967b24-47f7-495e-a1f1-d93ab98098c2_1200x1200.jpg?v=1778703859" alt="Heirloom Diamond Witchy Engagement Ring in 10k White Gold" loading="lazy"><span class="body"><span class="who">Heirloom Diamond Witchy Engagement Ring in 10k White Gold</span><span class="go">Read the commission</span></span></a><a href="https://bohemi.com/blogs/customs/oval-brilliant-salt-pepper-18k-engagement-ring"><img src="https://bohemi.com/cdn/shop/articles/sarah_garcia_18k_oval_s_p14_75d1ed45-9170-454a-931b-8d37577c08a7_1200x1200.jpg?v=1778701452" alt="Oval Brilliant Salt &amp; Pepper 18k Engagement Ring" loading="lazy"><span class="body"><span class="who">Oval Brilliant Salt &amp; Pepper 18k Engagement Ring</span><span class="go">Read the commission</span></span></a><a href="https://bohemi.com/blogs/customs/salt-pepper-gothic-engagement-ring"><img src="https://bohemi.com/cdn/shop/articles/Emily_gothic_diamond_eng_ring4_480db6e9-8c32-4c96-9221-a753dc18d7c1_1200x1200.jpg?v=1778279421" alt="Salt &amp; Pepper Diamond Gothic Engagement Ring" loading="lazy"><span class="body"><span class="who">Salt &amp; Pepper Diamond Gothic Engagement Ring</span><span class="go">Read the commission</span></span></a><a href="https://bohemi.com/blogs/customs/emerald-cut-champagne-salt-pepper-diamond-engagement-ring"><img src="https://bohemi.com/cdn/shop/articles/Alana_eng_ring5_f5ad4682-9bed-4e73-afd5-59c338dcad6e_1200x1200.jpg?v=1779836468" alt="Champagne Salt &amp; Pepper Diamond Engagement Ring" loading="lazy"><span class="body"><span class="who">Champagne Salt &amp; Pepper Diamond Engagement Ring</span><span class="go">Read the commission</span></span></a><a href="https://bohemi.com/blogs/customs/ombre-rosecut-salt-pepper-wedding-band"><img src="https://bohemi.com/cdn/shop/articles/sarah_garcia_wedding_band5_60b9d14e-1b0f-42cb-b39d-06b68b21ee9a_1200x1200.jpg?v=1778702636" alt="Ombré Rosecut Salt &amp; Pepper Wedding Band" loading="lazy"><span class="body"><span class="who">Ombré Rosecut Salt &amp; Pepper Wedding Band</span><span class="go">Read the commission</span></span></a><a href="https://bohemi.com/blogs/customs/montana-sapphire-w-s-p-diamond-platinum-engagement-ring"><img src="https://bohemi.com/cdn/shop/articles/Meghan_Sapp_S_P_Plat_eng_ring_fccc7f37-2cda-4801-ad97-fc7b6aacdc42_1200x1200.jpg?v=1779231012" alt="Hexagon Sapphire with Salt &amp; Pepper Diamond Platinum Engagement Ring" loading="lazy"><span class="body"><span class="who">Hexagon Sapphire with Salt &amp; Pepper Diamond Platinum Engagement Ring</span><span class="go">Read the commission</span></span></a><a href="https://bohemi.com/blogs/customs/custom-nyx-witchy-engagement-ring-story"><img src="https://bohemi.com/cdn/shop/articles/Babs_Hex_ring8_e8c4c82f-a422-4f72-8f1e-8d12b6e5f59c_1200x1200.jpg?v=1779231058" alt="Custom Nyx Ring Story" loading="lazy"><span class="body"><span class="who">Custom Nyx Ring Story</span><span class="go">Read the commission</span></span></a></div>
-<p class="striphint">Scroll for more. Every one of these is a ring Heather made, written up when it was finished.</p>
-<div class="pull">There is no better or worse, only the one that is yours.</div>
-
-<h2>Are salt-and-pepper diamonds durable enough for everyday wear?</h2>
-<p>A salt-and-pepper diamond is a real diamond, which means it sits at a 10 on the Mohs scale, the hardest natural material there is, so it will not scratch in everyday wear. Toughness is the honest nuance: a heavily included stone can be more prone to chipping where an inclusion reaches the surface, and this is exactly where a gem expert's eye earns its place. We hand-select each stone for soundness and favor a protective setting, a bezel or a low, secure profile, so the stone is guarded from daily knocks. One care note: skip the ultrasonic cleaner and harsh chemicals, and this is a ring you wear for decades. Built to last a lifetime is the standard here, same as every Bohemi ring.</p>
-
-<h2>Why do salt-and-pepper diamonds cost less than white diamonds?</h2>
-<p>Salt-and-pepper diamonds live outside the commodity white-diamond market, so your budget goes further: you can often have a larger, more characterful stone than a colorless diamond of the same spend. They also carry no GIA grading report, and that is not a gap. That system was built to score eye-clean, colorless stones, not a diamond whose whole character is what sits inside it. What you get instead is a diamond valued for exactly what makes it individual.</p>
-
-
-<h3 style="margin-top:2.2em">What the price is actually paying for</h3>
-<div style="overflow-x:auto"><table class="grounds prov">
+<!-- THEME SECTION: rich_text  +  custom_liquid (comparison table) -->
+<section class="pad"><div class="center narrow"><p class="script">More stone, not less</p><h2 class="caps">Why do salt-and-pepper diamonds cost less than white diamonds?</h2><p>Salt-and-pepper diamonds live outside the commodity white-diamond market, so your budget goes further: you can often have a larger, more characterful stone than a colorless diamond of the same spend. They also carry no GIA grading report, and that is not a gap. That system was built to score eye-clean, colorless stones, not a diamond whose whole character is what sits inside it. What you get instead is a diamond valued for exactly what makes it individual.</p></div><h3 class="caps center" style="font-size:1.35rem;margin:64px 0 1.4em">What the price is actually paying for</h3><div class="tablewrap"><table class="grounds">
 <tr><th></th><th>A graded white diamond</th><th>A salt-and-pepper diamond</th></tr>
-<tr><td>What the price reflects</td><td>Rarity of absence. Fewer inclusions, less color, closer to nothing.</td><td>The character of that one stone: its pattern, its cut, its size.</td></tr>
-<tr><td>What it is measured against</td><td>A standard scale, so one stone can be ranked against another.</td><td>Nothing. There is no scale for a pattern, which is why there is no grade to issue.</td></tr>
-<tr><td>What more money buys</td><td>A stone closer to colorless and eye clean.</td><td>Not a better stone. A different one, and often a larger or more dramatic one.</td></tr>
-<tr><td>How two stones compare</td><td>Directly, by their grades.</td><td>They do not. Choosing is a matter of which pattern you want to look at.</td></tr>
-</table></div>
-<p class="galnote">This is why a price list reads strangely here. Two of our salt-and-pepper stones can be the same carat weight and priced differently, because you are paying for the stone rather than for its position on a chart.</p>
+<tr><td>What the price reflects</td><td data-label="A graded white diamond">Rarity of absence. Fewer inclusions, less color, closer to nothing.</td><td data-label="A salt-and-pepper diamond">The character of that one stone: its pattern, its cut, its size.</td></tr>
+<tr><td>What it is measured against</td><td data-label="A graded white diamond">A standard scale, so one stone can be ranked against another.</td><td data-label="A salt-and-pepper diamond">Nothing. There is no scale for a pattern, which is why there is no grade to issue.</td></tr>
+<tr><td>What more money buys</td><td data-label="A graded white diamond">A stone closer to colorless and eye clean.</td><td data-label="A salt-and-pepper diamond">Not a better stone. A different one, and often a larger or more dramatic one.</td></tr>
+<tr><td>How two stones compare</td><td data-label="A graded white diamond">Directly, by their grades.</td><td data-label="A salt-and-pepper diamond">They do not. Choosing is a matter of which pattern you want to look at.</td></tr>
+</table></div><p class="note narrow">This is why a price list reads strangely here. Two of our salt-and-pepper stones can be the same carat weight and priced differently, because you are paying for the stone rather than for its position on a chart.</p></section>
 
-<h2>How do you design a ring around a salt-and-pepper diamond?</h2>
-<p>Because the stone leads, we start there. We source and select your salt-and-pepper diamond with you, then design the entire ring around its pattern, its shape, and the way it catches light, so the setting serves the stone rather than fighting it. Some patterns want a clean bezel that frames them like art. Some want prongs that let light move through. That decision is part of the design. Some salt-and-pepper diamonds pair beautifully with textured bands and hidden details, the small design touches only the wearer knows are there, while others are at their best in a minimal setting that lets the stone do the talking.</p>
+<!-- THEME SECTION: image_with_text (image + inset left, copy right) -->
+<section class="pad split rev"><div class="copy"><p class="script">Stone first</p><h2 class="caps">How do you design a ring around a salt-and-pepper diamond?</h2><p>Because the stone leads, we start there. We source and select your salt-and-pepper diamond with you, then design the entire ring around its pattern, its shape, and the way it catches light, so the setting serves the stone rather than fighting it. Some patterns want a clean bezel that frames them like art. Some want prongs that let light move through. That decision is part of the design. Some salt-and-pepper diamonds pair beautifully with textured bands and hidden details, the small design touches only the wearer knows are there, while others are at their best in a minimal setting that lets the stone do the talking.</p><a class="label-link" href="/pages/appointments">Start a custom design</a></div><div class="media"><img class="big" src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/Nyx_Engagement_Ring_14k_Yellow_Gold.jpg?v=1762547395&width=1400" alt="Nyx, an elongated hexagon salt and pepper diamond engagement ring" loading="lazy"><span class="inset ph"><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/162_4500.jpg?v=1773461863&width=800" alt="A loose salt and pepper diamond emerald cut, 2.35 carat" loading="lazy" style="transform:scale(1.0)"></span></div></section>
 
-<h2>Start your ring</h2>
-<p>Salt-and-pepper diamonds are one path into an <a href="/pages/alternative-engagement-rings">alternative engagement ring</a>, alongside <a href="/pages/montana-sapphire-engagement-rings">Montana sapphires</a> and <a href="/collections/starbrite-cut-stones">fantasy cuts</a>. The studio is by appointment, so your consultation time is entirely yours.</p>
-
-<p class="byline">Written and checked by <strong>Heather Ng, A.J.P.</strong>, owner, jeweler and designer at Bohemi in Boulder, Colorado. Every stone described here was selected by her.</p>
-<h2 style="margin-bottom:.8em">Questions people ask first</h2>
-<details><summary>Are salt-and-pepper diamonds real diamonds?</summary><div class="faq-a">Yes. A salt-and-pepper diamond is a genuine diamond, chemically identical to a colorless one and just as hard at a 10 on the Mohs scale. The difference is the visible inclusions, the flecks of black, white, red, orange and brown that make each stone one of a kind.</div></details>
-<details><summary>Can I design a completely custom salt-and-pepper ring?</summary><div class="faq-a">Yes. We source your stone with you, then design the whole ring around its pattern and shape. You bring the feeling and a few images, and we translate that into a real design built to last.</div></details>
-<details><summary>Does a salt-and-pepper diamond come with a certificate?</summary><div class="faq-a">Not in the way a classic white diamond does, and that is by design, not by omission. Standard grading reports are built around the 4Cs, which assume a colorless, eye-clean stone. A salt-and-pepper diamond, with its visible inclusions and its own natural color, does not fit that scale, so there is no grade to issue. What you get instead is a diamond valued for what makes it individual, not scored against a standard it was never trying to meet.</div></details>
-<details><summary>How do I care for a salt-and-pepper diamond ring?</summary><div class="faq-a">Skip the ultrasonic cleaner and harsh chemicals. Beyond that it is a ring you simply wear, for decades.</div></details>
-<details><summary>How long does a salt-and-pepper diamond engagement ring take to make?</summary><div class="faq-a">It depends on how custom you go. A ready-made design takes about 4 to 6 weeks, made-to-measure about 6 to 8, and a fully bespoke piece about 8 to 12.</div></details>
-</div>
-
-<section class="cta">
-  <h2>Start your ring</h2>
-  <p>The studio is by appointment, so your consultation time is entirely yours. Let's find the stone that is only yours.</p>
-  <a class="btn" href="/pages/appointments">Book a consultation</a>
+<!-- THEME SECTION: featured_collection (native collection block, see TRACY note) -->
+<section class="pad"><div class="center narrow"><h2 class="caps">The salt-and-pepper diamonds we have right now</h2><p>Every one is a single stone with a pattern that does not repeat. Prices are for the stone itself, and the ring is designed around whichever one you choose.</p></div><div class="carousel" style="margin-top:40px"><a href="https://bohemi.com/products/lab-salt-pepper-diamond-lozenge-1-32ct"><span class="ph"><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/133_870.jpg?v=1773461480" alt="Lab S&amp;P Diamond Lozenge 1.32ct" loading="lazy" style="transform:scale(1.0)"></span><span class="t">Lab S&amp;P Diamond Lozenge 1.32ct</span><span class="p">$870</span></a><a href="https://bohemi.com/products/salt-pepper-diamond-hexagon-0-49ct"><span class="ph"><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/129_880b.jpg?v=1773522914" alt="S&amp;P Diamond Hexagon 0.49ct" loading="lazy" style="transform:scale(2.42)"></span><span class="t">S&amp;P Diamond Hexagon 0.49ct</span><span class="p">$880</span></a><a href="https://bohemi.com/products/salt-pepper-diamond-emerald-cut-1-07"><span class="ph"><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/24_1000.jpg?v=1757801249" alt="S&amp;P Diamond Emerald Cut 1.07ct" loading="lazy" style="transform:scale(1.56)"></span><span class="t">S&amp;P Diamond Emerald Cut 1.07ct</span><span class="p">$1,000</span></a><a href="https://bohemi.com/products/salt-pepper-diamond-geo-pear-0-93ct"><span class="ph"><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/121_1400.jpg?v=1773460393" alt="S&amp;P Diamond Geo Pear 0.93ct" loading="lazy" style="transform:scale(1.0)"></span><span class="t">S&amp;P Diamond Geo Pear 0.93ct</span><span class="p">$1,400</span></a><a href="https://bohemi.com/products/lab-salt-pepper-diamond-kite-2-17ct"><span class="ph"><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/132_1430.jpg?v=1773462162" alt="Lab S&amp;P Diamond Kite 2.17ct" loading="lazy" style="transform:scale(1.0)"></span><span class="t">Lab S&amp;P Diamond Kite 2.17ct</span><span class="p">$1,430</span></a><a href="https://bohemi.com/products/salt-pepper-diamond-hexagon-1-11ct"><span class="ph"><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/128_1450.jpg?v=1773513558" alt="S&amp;P Diamond Hexagon 1.11ct" loading="lazy" style="transform:scale(1.37)"></span><span class="t">S&amp;P Diamond Hexagon 1.11ct</span><span class="p">$1,450</span></a><a href="https://bohemi.com/products/salt-pepper-diamond-hexagon-1-32ct"><span class="ph"><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/23_1480.jpg?v=1758079614" alt="S&amp;P Diamond Hexagon 1.32ct" loading="lazy" style="transform:scale(1.33)"></span><span class="t">S&amp;P Diamond Hexagon 1.32ct</span><span class="p">$1,480</span></a><a href="https://bohemi.com/products/lab-salt-pepper-diamond-hexagon-2-46ct"><span class="ph"><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/files/136_1625.jpg?v=1773462042" alt="Lab S&amp;P Diamond Hexagon 2.46ct" loading="lazy" style="transform:scale(1.0)"></span><span class="t">Lab S&amp;P Diamond Hexagon 2.46ct</span><span class="p">$1,625</span></a></div><div class="center"><a class="btn" href="/collections/salt-and-pepper-diamonds">See the whole salt-and-pepper collection</a></div>
+<!-- TRACY: replace this strip with a native Shopify collection block so it always shows
+     current stock. One-of-a-kind stones sell, and a hard-coded list would rot.
+     Smart collection rule, verified live 2026-09-23: tag is 'Salt &amp; Pepper' AND title contains 'Diamond'
+     Tag ALONE is not enough. Her tags are merchandising tags, so a tag-only rule returns
+     a sapphire and three finished rings inside the salt-and-pepper set. -->
 </section>
 
+<!-- THEME SECTION: rich_text, sage band (links back to the hub and the sibling page) -->
+<section class="pad band center"><p class="script">Where to next</p><h2 class="caps">Start your ring</h2><div class="narrow"><p>Salt-and-pepper diamonds are one path into an <a href="/pages/alternative-engagement-rings">alternative engagement ring</a>, alongside <a href="/pages/montana-sapphire-engagement-rings">Montana sapphires</a> and <a href="/collections/starbrite-cut-stones">fantasy cuts</a>. The studio is by appointment, so your consultation time is entirely yours.</p></div></section>
+
+<section class="pad" style="padding-bottom:0"><p class="byline">Written and checked by <strong>Heather Ng, A.J.P.</strong>, owner, jeweler and designer at Bohemi in Boulder, Colorado. Every stone described here was selected by her.</p></section>
+
+<!-- THEME SECTION: accordions (framed FAQ) -->
+<section class="pad"><div class="faqbox"><h2 class="caps">Questions people ask first</h2><details><summary>Are salt-and-pepper diamonds real diamonds?</summary><div class="faq-a">Yes. A salt-and-pepper diamond is a genuine diamond, chemically identical to a colorless one and just as hard at a 10 on the Mohs scale. The difference is the visible inclusions, the flecks of black, white, red, orange and brown that make each stone one of a kind.</div></details><details><summary>Can I design a completely custom salt-and-pepper ring?</summary><div class="faq-a">Yes. We source your stone with you, then design the whole ring around its pattern and shape. You bring the feeling and a few images, and we translate that into a real design built to last.</div></details><details><summary>Does a salt-and-pepper diamond come with a certificate?</summary><div class="faq-a">Not in the way a classic white diamond does, and that is by design, not by omission. Standard grading reports are built around the 4Cs, which assume a colorless, eye-clean stone. A salt-and-pepper diamond, with its visible inclusions and its own natural color, does not fit that scale, so there is no grade to issue. What you get instead is a diamond valued for what makes it individual, not scored against a standard it was never trying to meet.</div></details><details><summary>How do I care for a salt-and-pepper diamond ring?</summary><div class="faq-a">Skip the ultrasonic cleaner and harsh chemicals. Beyond that it is a ring you simply wear, for decades.</div></details><details><summary>How long does a salt-and-pepper diamond engagement ring take to make?</summary><div class="faq-a">It depends on how custom you go. A ready-made design takes about 4 to 6 weeks, made-to-measure about 6 to 8, and a fully bespoke piece about 8 to 12.</div></details></div></section>
+
+<!-- THEME SECTION: image_with_text_overlay, dark (closing CTA) -->
+<section class="hero cta"><img src="https://cdn.shopify.com/s/files/1/0791/5385/6809/collections/nyx_wedding_set.jpg?width=2000" alt="" aria-hidden="true" style="object-position:75% center"><div class="copy"><h2>Start your ring</h2><p class="caps" style="margin-bottom:1em">By appointment in Boulder</p><p>The studio is by appointment, so your consultation time is entirely yours. Let's find the stone that is only yours.</p><a class="btn" href="/pages/appointments">Book a consultation</a></div></section>
+
+</main>
 <footer class="bsite-foot">
   <div class="grid">
     <div class="col">
@@ -354,6 +514,7 @@
   </div>
   <div class="ox"></div>
 </footer>
+
 
 <!-- Schema for Tracy: FAQPage is DERIVED from the visible accordion above.
      If the accordion changes, regenerate this rather than editing it by hand. -->
